@@ -12,9 +12,12 @@
 		65B6B6641D81133400B844BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65B6B6621D81133400B844BC /* Main.storyboard */; };
 		65B6B6661D81133400B844BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65B6B6651D81133400B844BC /* Assets.xcassets */; };
 		65B6B6691D81133400B844BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65B6B6671D81133400B844BC /* LaunchScreen.storyboard */; };
+		65B6B6711D8151C400B844BC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65B6B6701D8151C400B844BC /* GoogleService-Info.plist */; };
+		D35F792B687CAE565B0B2056 /* Pods_instalkgram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D6F2AF70E641E091176CA5 /* Pods_instalkgram.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		34B528693722A209AA80D848 /* Pods-instalkgram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instalkgram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-instalkgram/Pods-instalkgram.debug.xcconfig"; sourceTree = "<group>"; };
 		65B6B65B1D81133400B844BC /* instalkgram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = instalkgram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B6B65E1D81133400B844BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65B6B6601D81133400B844BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +25,9 @@
 		65B6B6651D81133400B844BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65B6B6681D81133400B844BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65B6B66A1D81133400B844BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65B6B6701D8151C400B844BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7C608C3F06926304EAEFA4FE /* Pods-instalkgram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instalkgram.release.xcconfig"; path = "Pods/Target Support Files/Pods-instalkgram/Pods-instalkgram.release.xcconfig"; sourceTree = "<group>"; };
+		C2D6F2AF70E641E091176CA5 /* Pods_instalkgram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_instalkgram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +35,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D35F792B687CAE565B0B2056 /* Pods_instalkgram.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		029F336049A115F3535B6618 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C2D6F2AF70E641E091176CA5 /* Pods_instalkgram.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		65B6B6521D81133400B844BC = {
 			isa = PBXGroup;
 			children = (
 				65B6B65D1D81133400B844BC /* instalkgram */,
 				65B6B65C1D81133400B844BC /* Products */,
+				7B2EE7CB0150D415CF2B053F /* Pods */,
+				029F336049A115F3535B6618 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,9 +76,19 @@
 				65B6B6621D81133400B844BC /* Main.storyboard */,
 				65B6B6651D81133400B844BC /* Assets.xcassets */,
 				65B6B6671D81133400B844BC /* LaunchScreen.storyboard */,
+				65B6B6701D8151C400B844BC /* GoogleService-Info.plist */,
 				65B6B66A1D81133400B844BC /* Info.plist */,
 			);
 			path = instalkgram;
+			sourceTree = "<group>";
+		};
+		7B2EE7CB0150D415CF2B053F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				34B528693722A209AA80D848 /* Pods-instalkgram.debug.xcconfig */,
+				7C608C3F06926304EAEFA4FE /* Pods-instalkgram.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +98,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 65B6B66D1D81133400B844BC /* Build configuration list for PBXNativeTarget "instalkgram" */;
 			buildPhases = (
+				4347A79BFF2C227953EF0785 /* [CP] Check Pods Manifest.lock */,
 				65B6B6571D81133400B844BC /* Sources */,
 				65B6B6581D81133400B844BC /* Frameworks */,
 				65B6B6591D81133400B844BC /* Resources */,
+				8936CA02B33A2633F4394840 /* [CP] Embed Pods Frameworks */,
+				68F518060F72C1B1D7C74054 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -125,10 +155,59 @@
 				65B6B6691D81133400B844BC /* LaunchScreen.storyboard in Resources */,
 				65B6B6661D81133400B844BC /* Assets.xcassets in Resources */,
 				65B6B6641D81133400B844BC /* Main.storyboard in Resources */,
+				65B6B6711D8151C400B844BC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4347A79BFF2C227953EF0785 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		68F518060F72C1B1D7C74054 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-instalkgram/Pods-instalkgram-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8936CA02B33A2633F4394840 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-instalkgram/Pods-instalkgram-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		65B6B6571D81133400B844BC /* Sources */ = {
@@ -249,6 +328,7 @@
 		};
 		65B6B66E1D81133400B844BC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 34B528693722A209AA80D848 /* Pods-instalkgram.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = instalkgram/Info.plist;
@@ -260,6 +340,7 @@
 		};
 		65B6B66F1D81133400B844BC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C608C3F06926304EAEFA4FE /* Pods-instalkgram.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = instalkgram/Info.plist;
@@ -288,6 +369,7 @@
 				65B6B66F1D81133400B844BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
