@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -20,6 +20,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background2" translatesAutoresizingMaskIntoConstraints="NO" id="M14-GZ-tCb">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <gestureRecognizers/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZI8-A3-yA3">
                                 <rect key="frame" x="175" y="216" width="250" height="30"/>
@@ -275,6 +276,7 @@
                     <connections>
                         <outlet property="emailTxt" destination="2Vj-f4-i3x" id="PSN-cD-L0w"/>
                         <outlet property="passwordTxt" destination="WAu-24-xt2" id="IU4-7N-a70"/>
+                        <segue destination="Ddr-Od-4g6" kind="presentation" id="5wH-fI-j0I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Lc-CI-deG" sceneMemberID="firstResponder"/>
@@ -294,10 +296,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background2" translatesAutoresizingMaskIntoConstraints="NO" id="Z6P-JU-RSP">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, *username here*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHu-Ct-Ice">
-                                <rect key="frame" x="145" y="274" width="311" height="51"/>
+                                <rect key="frame" x="145" y="282" width="311" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -307,18 +309,19 @@
                                 <state key="normal" title="Continue">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="Ddr-Od-4g6" kind="presentation" id="oyg-v7-jxd"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Y1Y-Ym-cVR" firstAttribute="top" secondItem="Z6P-JU-RSP" secondAttribute="bottom" id="2eh-eI-4ug"/>
-                            <constraint firstItem="Z6P-JU-RSP" firstAttribute="top" secondItem="PLt-d4-lj4" secondAttribute="bottom" id="5Wi-tO-Y00"/>
+                            <constraint firstItem="Z6P-JU-RSP" firstAttribute="top" secondItem="PLt-d4-lj4" secondAttribute="bottom" constant="-20" id="5Wi-tO-Y00"/>
+                            <constraint firstItem="eHu-Ct-Ice" firstAttribute="centerY" secondItem="ejs-la-5V5" secondAttribute="centerY" id="DyY-KL-tQ2"/>
                             <constraint firstItem="Z6P-JU-RSP" firstAttribute="leading" secondItem="ejs-la-5V5" secondAttribute="leading" id="Jl4-XL-fE3"/>
                             <constraint firstItem="F8m-oI-Zcb" firstAttribute="centerX" secondItem="ejs-la-5V5" secondAttribute="centerX" id="Z6C-mP-naj"/>
-                            <constraint firstItem="eHu-Ct-Ice" firstAttribute="top" secondItem="PLt-d4-lj4" secondAttribute="bottom" constant="254" id="ZHo-AV-RQn"/>
-                            <constraint firstItem="Y1Y-Ym-cVR" firstAttribute="top" secondItem="eHu-Ct-Ice" secondAttribute="bottom" constant="275" id="nKv-Ge-htV"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="eHu-Ct-Ice" secondAttribute="trailing" constant="124" id="o2g-ms-m3u"/>
-                            <constraint firstItem="eHu-Ct-Ice" firstAttribute="leading" secondItem="ejs-la-5V5" secondAttribute="leadingMargin" constant="125" id="pri-TG-Nw6"/>
+                            <constraint firstItem="eHu-Ct-Ice" firstAttribute="centerX" secondItem="ejs-la-5V5" secondAttribute="centerX" id="rIW-kF-jRC"/>
                             <constraint firstItem="Y1Y-Ym-cVR" firstAttribute="top" secondItem="F8m-oI-Zcb" secondAttribute="bottom" constant="20" id="x7t-S9-Ti2"/>
                             <constraint firstAttribute="trailing" secondItem="Z6P-JU-RSP" secondAttribute="trailing" id="zMy-Sz-lYg"/>
                         </constraints>
@@ -330,6 +333,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vr1-AA-U5s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1234" y="398"/>
+        </scene>
+        <!--AfterLogin-->
+        <scene sceneID="VfJ-eG-Rdg">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AfterLogin" id="Ddr-Od-4g6" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="42I-h5-QbR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1234" y="1129"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Fps-RQ-Sy3">
@@ -390,4 +401,7 @@
         <image name="Instalkgram_Logo" width="698" height="186"/>
         <image name="background2" width="750" height="1334"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="5wH-fI-j0I"/>
+    </inferredMetricsTieBreakers>
 </document>
