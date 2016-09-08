@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "9CF52E5F0C24D64243BC29F93609C78F570B3334",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "9CF52E5F0C24D64243BC29F93609C78F570B3334" : 0,
+    "28FBE7A174A52AACC7306DD60D1AE5B73553FD57" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "D982E75E-8615-48FE-8489-02D1D1995D1E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "9CF52E5F0C24D64243BC29F93609C78F570B3334" : "instalkgram\/",
+    "28FBE7A174A52AACC7306DD60D1AE5B73553FD57" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "instalkgram",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "instalkgram.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git.nextacademy.com:MunKeong_Yong\/SpecialContacts",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "28FBE7A174A52AACC7306DD60D1AE5B73553FD57"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:andresuhartanto\/instalkgram.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9CF52E5F0C24D64243BC29F93609C78F570B3334"
+    }
+  ]
+}
