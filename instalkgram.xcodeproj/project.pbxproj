@@ -12,9 +12,9 @@
 		65B6B6641D81133400B844BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65B6B6621D81133400B844BC /* Main.storyboard */; };
 		65B6B6661D81133400B844BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65B6B6651D81133400B844BC /* Assets.xcassets */; };
 		65B6B6691D81133400B844BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65B6B6671D81133400B844BC /* LaunchScreen.storyboard */; };
-		F123FE851D81511700689D3F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F123FE841D81511700689D3F /* User.swift */; };
 		65B6B6711D8151C400B844BC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65B6B6701D8151C400B844BC /* GoogleService-Info.plist */; };
 		D35F792B687CAE565B0B2056 /* Pods_instalkgram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D6F2AF70E641E091176CA5 /* Pods_instalkgram.framework */; };
+		F123FE851D81511700689D3F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F123FE841D81511700689D3F /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,10 +26,10 @@
 		65B6B6651D81133400B844BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65B6B6681D81133400B844BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65B6B66A1D81133400B844BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F123FE841D81511700689D3F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		65B6B6701D8151C400B844BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7C608C3F06926304EAEFA4FE /* Pods-instalkgram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instalkgram.release.xcconfig"; path = "Pods/Target Support Files/Pods-instalkgram/Pods-instalkgram.release.xcconfig"; sourceTree = "<group>"; };
 		C2D6F2AF70E641E091176CA5 /* Pods_instalkgram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_instalkgram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F123FE841D81511700689D3F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
