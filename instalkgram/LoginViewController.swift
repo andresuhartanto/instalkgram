@@ -17,8 +17,13 @@ class LoginViewController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        self.view.endEditing(true)
     }
 
     @IBAction func onNoAcctPressed(sender: UIButton) {
@@ -62,6 +67,7 @@ class LoginViewController: UIViewController {
             }
             
         })
+
     }
     
 
