@@ -13,6 +13,7 @@ public class User{
     
     static let sessionKey = "MyIosChatUID"
     static var singleton:User?
+    var userDisplayName: String?
     
     static var currentUserUid:  String {
         if let user = FIRAuth.auth()!.currentUser{
@@ -24,15 +25,11 @@ public class User{
     }
     
     static var currentUserName:  String {
-        if let user = FIRAuth.auth()!.currentUser{
-            //let uid = NSUserDefaults.standardUserDefaults().objectForKey(User.sessionKey) as! FIRUser
             guard
-                let username = user.displayName
+                let username = self.getSingleton.userDisplayName
                 else {return ""}
             
             return username
-        }
-        return ""
     }
     
     static var getSingleton: User {
@@ -42,9 +39,10 @@ public class User{
         return singleton!
     }
     
-    func storeUserSession() {
+    func storeUserSession(username:String) {
         if let user = FIRAuth.auth()!.currentUser{
             NSUserDefaults.standardUserDefaults().setObject(user.uid, forKey: User.sessionKey)
+            userDisplayName=username
         }
     }
     
