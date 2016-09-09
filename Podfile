@@ -10,5 +10,6 @@ target 'instalkgram' do
     pod 'Firebase/Auth'
     pod 'Firebase/Database'
     pod 'GoogleSignIn'
+    pod 'Fusuma'
 
 end
