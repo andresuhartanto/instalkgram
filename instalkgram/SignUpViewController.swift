@@ -18,6 +18,13 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
        GIDSignIn.sharedInstance().uiDelegate = self
+        // Do any additional setup after loading the view, typically from a nib.
+        let tap = UITapGestureRecognizer(target: self, action: #selector(SignUpViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        self.view.endEditing(true)
     }
 
    
