@@ -1,0 +1,121 @@
+//
+//  HomeViewController.swift
+//  instalkgram
+//
+//  Created by Andre Suhartanto on 9/9/16.
+//  Copyright © 2016 EndeJeje. All rights reserved.
+//
+
+import UIKit
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
+import SDWebImage
+
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
+
+    @IBOutlet weak var feedTableView: UITableView!
+    var imagesForFeed = [Image]()
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        DataService.rootRef.child("images").observeEventType(.ChildAdded, withBlock: { (snapshot) in
+            if let image = Image.init(snapshot: snapshot){
+                self.imagesForFeed.append(image)
+                self.feedTableView.reloadData()
+            }
+
+        })
+        
+        
+    }
+//    
+//    func scrollViewDidScroll(scrollView: UIScrollView) {
+//        if scrollView.contentOffset.y >= 0.0{
+////            navigationController?.navigationBar.hidden = true
+//        }else{
+////            navigationController?.navigationBar.hidden = false
+//        }
+//    }
+    
+    
+//    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+//        <#code#>
+//    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return imagesForFeed.count
+    }
+    
+    func documentPahth() -> String {
+        return (NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last?.absoluteString)!
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("FeedCell") as? FeedTableViewCell
+        let oneImage = imagesForFeed[indexPath.row]
+        
+        if (NSFileManager.defaultManager().fileExistsAtPath(documentPahth()+"image1.jpg")){
+            
+            let savedImage = UIImage(contentsOfFile: documentPahth()+"image1.jpg")
+            cell?.imagePost?.image = savedImage
+            
+        } else {
+        
+            cell?.imagePost?.sd_setImageWithURL(NSURL(string: oneImage.downloadURL), placeholderImage: UIImage(named: "placeholder"), completed: { (image, error, cacheType, imageURL) in
+                
+                // save to directory
+                    let filePath = self.documentPahth()
+                    let imageData = UIImageJPEGRepresentation(image, 0.8)
+                    NSFileManager.defaultManager().createFileAtPath(filePath+"image1.jpg", contents: imageData, attributes: nil)
+        
+            })
+        }
+        
+//        cell?.imagePost.sd_setImageWithURL(NSURL(string: oneImage.downloadURL))
+        
+        return cell!
+    }
+    
+    
+//    
+//    func loadImage(urlString: String){
+//        var imageCache = SDImageCache(namespace: "default")
+//        imageCache.queryDiskCacheForKey(myCacheKey, done: {(image: UIImage) -> Void in
+//            self.imagesForFeed.append(image)
+//        })
+//
+//    }
+    
+    
+    
+//    func loadImage(urlString: String){
+//        
+//        let imageCache = NSCache()
+//        
+//        if let cachedImage = imageCache.objectForKey(urlString) as? UIImage {
+//            imagesForFeed.append(cachedImage)
+//            return
+//        }
+//        
+//        let url = NSURL(string: urlString)
+//        NSURLSession.sharedSession().dataTaskWithURL(url!, completionHandler: { (data, response, error) in
+//            if error != nil {
+//                print(error)
+//                return
+//            }
+//            
+//            dispatch_async(dispatch_get_main_queue(), {
+//                if let downloadedImage = UIImage(data: data!) {
+//                    imageCache.setObject(downloadedImage, forKey: urlString)
+//                    
+//                    self.imagesForFeed.append(downloadedImage)
+//                }
+//            })
+//        
+//        }).resume()
+//    }
+
+}
