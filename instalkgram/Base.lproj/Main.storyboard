@@ -163,7 +163,7 @@
         <!--Login View Controller-->
         <scene sceneID="9Fe-at-3Xb">
             <objects>
-                <viewController id="YQP-Kx-Rcq" customClass="LoginViewController" customModule="instalkgram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" id="YQP-Kx-Rcq" customClass="LoginViewController" customModule="instalkgram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hRm-cx-lev"/>
                         <viewControllerLayoutGuide type="bottom" id="cm0-L6-7Ed"/>

@@ -34,17 +34,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
         let authentication = user.authentication
         let credential = FIRGoogleAuthProvider.credentialWithIDToken(authentication.idToken, accessToken: authentication.accessToken)
         
-        FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
-            if let user=user {
+        let email = user.profile.email
+        let username = user.profile.name
+        
+        FIRAuth.auth()?.signInWithCredential(credential) { (firebaseUser, error) in
+            if let firebaseUser=firebaseUser {
                 
                 //NSUserDefaults.standardUserDefaults().setObject(user.uid, forKey: "MyIosChatUID")
-                User.getSingleton.storeUserSession(user.displayName!)
+                User.getSingleton.storeUserSession(username)
                 
-                let storyBoard = UIStoryboard(name:"Main", bundle:NSBundle.mainBundle())
+                let currentUserRef = DataService.userRef.child(firebaseUser.uid)
+                let userDict = ["email": email, "username": username]
+                
+                currentUserRef.setValue(userDict)
+                
+                let storyBoard = UIStoryboard(name:"AfterLogin", bundle:NSBundle.mainBundle())
                 //load viewcontroller with the storyboardID of HomeTabBarController
                 //To Do: replace with the appropriate page
-                //let tabBarController = storyBoard.instantiateViewControllerWithIdentifier("HomeTabBarController")
-                //self.window?.rootViewController=tabBarController
+                let tabBarController = storyBoard.instantiateViewControllerWithIdentifier("TabBarVC")
+                self.window?.rootViewController=tabBarController
             }
         }
     }
