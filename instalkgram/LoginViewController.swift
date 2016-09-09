@@ -19,6 +19,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         super.viewDidLoad()
         GIDSignIn.sharedInstance().uiDelegate = self
         let tap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
     
@@ -55,7 +56,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 User.getSingleton.storeUserSession(username)
                 
                 //...To do: to the homepage...
-                //self.performSegueWithIdentifier("LoginSegue", sender: nil)
+                self.performSegueWithIdentifier("LogInSegue", sender: nil)
             } else {
                 //failed
                 let alert = UIAlertController(title: "Sign In Failed", message: error?.localizedDescription, preferredStyle: .Alert)

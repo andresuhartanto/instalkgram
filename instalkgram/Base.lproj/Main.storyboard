@@ -276,7 +276,7 @@
                     <connections>
                         <outlet property="emailTxt" destination="2Vj-f4-i3x" id="PSN-cD-L0w"/>
                         <outlet property="passwordTxt" destination="WAu-24-xt2" id="IU4-7N-a70"/>
-                        <segue destination="Ddr-Od-4g6" kind="presentation" id="5wH-fI-j0I"/>
+                        <segue destination="Ddr-Od-4g6" kind="presentation" identifier="LogInSegue" id="5wH-fI-j0I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Lc-CI-deG" sceneMemberID="firstResponder"/>

@@ -10,6 +10,7 @@ import UIKit
 import Fusuma
 
 class PhotoViewController: UIViewController, FusumaDelegate {
+    @IBOutlet weak var imageView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,7 @@ class PhotoViewController: UIViewController, FusumaDelegate {
     
     // Return the image which is selected from camera roll or is taken via the camera.
     func fusumaImageSelected(image: UIImage) {
-        
+        imageView.image = image
         print("Image selected")
     }
     
@@ -41,5 +42,23 @@ class PhotoViewController: UIViewController, FusumaDelegate {
         
         print("Camera roll unauthorized")
     }
+    @IBAction func onShareButtonPressed(sender: UIButton) {
+        
+        let storyboard = UIStoryboard(name: "AfterLogin", bundle: NSBundle.mainBundle())
+        let ChatListViewController = storyboard.instantiateViewControllerWithIdentifier("TabBarVC")
+        self.presentViewController(ChatListViewController, animated: true, completion: nil)
+        
+        
+    }
+    
+    @IBAction func onCancelButtonPressed(sender: UIButton) {
+        
+        let storyboard = UIStoryboard(name: "AfterLogin", bundle: NSBundle.mainBundle())
+        let ChatListViewController = storyboard.instantiateViewControllerWithIdentifier("TabBarVC")
+        self.presentViewController(ChatListViewController, animated: true, completion: nil)
+        
+        
+    }
+    
 
 }
