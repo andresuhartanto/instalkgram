@@ -85,7 +85,7 @@
         <!--Profile-->
         <scene sceneID="Aa3-Pe-Mhj">
             <objects>
-                <viewController id="qlI-t5-86U" sceneMemberID="viewController">
+                <viewController id="qlI-t5-86U" customClass="ProfileViewController" customModule="instalkgram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BMG-nG-aMV"/>
                         <viewControllerLayoutGuide type="bottom" id="ke2-s1-uLx"/>
@@ -95,7 +95,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="bU6-Jg-JdB"/>
+                    <navigationItem key="navigationItem" title="Profile" id="bU6-Jg-JdB">
+                        <barButtonItem key="rightBarButtonItem" image="logout-outlined-square-button-with-right-arrow" id="WsI-RG-TK6">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="logoutButoon:" destination="qlI-t5-86U" id="CpI-Sq-4Gn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xEn-tO-Vn1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -185,6 +192,7 @@
         <image name="avatar-2" width="32" height="32"/>
         <image name="background2" width="750" height="1334"/>
         <image name="home-2" width="32" height="32"/>
+        <image name="logout-outlined-square-button-with-right-arrow" width="32" height="32"/>
         <image name="photo-camera-2" width="32" height="32"/>
     </resources>
 </document>

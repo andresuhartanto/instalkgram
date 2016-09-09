@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		651003861D8175E300F3CFEC /* AfterLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 651003851D8175E300F3CFEC /* AfterLogin.storyboard */; };
 		6544066D1D825CF9006E636E /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6544066C1D825CF9006E636E /* PhotoViewController.swift */; };
+		6544066F1D826D84006E636E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6544066E1D826D84006E636E /* ProfileViewController.swift */; };
 		65B6B65F1D81133400B844BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B6B65E1D81133400B844BC /* AppDelegate.swift */; };
 		65B6B6611D81133400B844BC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B6B6601D81133400B844BC /* SignUpViewController.swift */; };
 		65B6B6641D81133400B844BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65B6B6621D81133400B844BC /* Main.storyboard */; };
 		65B6B6661D81133400B844BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65B6B6651D81133400B844BC /* Assets.xcassets */; };
 		65B6B6691D81133400B844BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65B6B6671D81133400B844BC /* LaunchScreen.storyboard */; };
 		65B6B6711D8151C400B844BC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65B6B6701D8151C400B844BC /* GoogleService-Info.plist */; };
+		65ECA1901D82910B00178EB2 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ECA18F1D82910B00178EB2 /* StorageService.swift */; };
 		D35F792B687CAE565B0B2056 /* Pods_instalkgram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D6F2AF70E641E091176CA5 /* Pods_instalkgram.framework */; };
 		F123FE851D81511700689D3F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F123FE841D81511700689D3F /* User.swift */; };
 		F123FE871D8161B000689D3F /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F123FE861D8161B000689D3F /* DataService.swift */; };
@@ -27,6 +29,7 @@
 		34B528693722A209AA80D848 /* Pods-instalkgram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instalkgram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-instalkgram/Pods-instalkgram.debug.xcconfig"; sourceTree = "<group>"; };
 		651003851D8175E300F3CFEC /* AfterLogin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AfterLogin.storyboard; sourceTree = "<group>"; };
 		6544066C1D825CF9006E636E /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		6544066E1D826D84006E636E /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		65B6B65B1D81133400B844BC /* instalkgram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = instalkgram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B6B65E1D81133400B844BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65B6B6601D81133400B844BC /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -35,6 +38,7 @@
 		65B6B6681D81133400B844BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65B6B66A1D81133400B844BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65B6B6701D8151C400B844BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		65ECA18F1D82910B00178EB2 /* StorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		7C608C3F06926304EAEFA4FE /* Pods-instalkgram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instalkgram.release.xcconfig"; path = "Pods/Target Support Files/Pods-instalkgram/Pods-instalkgram.release.xcconfig"; sourceTree = "<group>"; };
 		C2D6F2AF70E641E091176CA5 /* Pods_instalkgram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_instalkgram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F123FE841D81511700689D3F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -90,10 +94,12 @@
 				F123FE861D8161B000689D3F /* DataService.swift */,
 				65B6B6601D81133400B844BC /* SignUpViewController.swift */,
 				F123FE841D81511700689D3F /* User.swift */,
+				65ECA18F1D82910B00178EB2 /* StorageService.swift */,
 				65B6B6621D81133400B844BC /* Main.storyboard */,
 				F123FE8A1D816CC300689D3F /* LoginViewController.swift */,
 				F123FE881D81654800689D3F /* WelcomeViewController.swift */,
 				6544066C1D825CF9006E636E /* PhotoViewController.swift */,
+				6544066E1D826D84006E636E /* ProfileViewController.swift */,
 				65B6B6651D81133400B844BC /* Assets.xcassets */,
 				65B6B6671D81133400B844BC /* LaunchScreen.storyboard */,
 				651003851D8175E300F3CFEC /* AfterLogin.storyboard */,
@@ -244,7 +250,9 @@
 				F123FE891D81654800689D3F /* WelcomeViewController.swift in Sources */,
 				65B6B6611D81133400B844BC /* SignUpViewController.swift in Sources */,
 				65B6B65F1D81133400B844BC /* AppDelegate.swift in Sources */,
+				65ECA1901D82910B00178EB2 /* StorageService.swift in Sources */,
 				6544066D1D825CF9006E636E /* PhotoViewController.swift in Sources */,
+				6544066F1D826D84006E636E /* ProfileViewController.swift in Sources */,
 				F123FE851D81511700689D3F /* User.swift in Sources */,
 				F123FE871D8161B000689D3F /* DataService.swift in Sources */,
 			);

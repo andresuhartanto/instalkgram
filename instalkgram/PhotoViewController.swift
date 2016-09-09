@@ -8,6 +8,8 @@
 
 import UIKit
 import Fusuma
+import FirebaseAuth
+import FirebaseStorage
 
 class PhotoViewController: UIViewController, FusumaDelegate {
     @IBOutlet weak var imageView: UIImageView!
@@ -43,6 +45,36 @@ class PhotoViewController: UIViewController, FusumaDelegate {
         print("Camera roll unauthorized")
     }
     @IBAction func onShareButtonPressed(sender: UIButton) {
+        
+        //store to Firebase Storage
+        if let selectedImage = imageView.image {
+            let imagesStorageRef = StorageService.storageRef.child("images")
+            let imageData = UIImageJPEGRepresentation(selectedImage, 0.8)
+            let imagePath = FIRAuth.auth()!.currentUser!.uid +
+                "/\(Int(NSDate.timeIntervalSinceReferenceDate() * 1000)).jpg"
+            let metadata = FIRStorageMetadata()
+            metadata.contentType = "image/jpeg"
+            imagesStorageRef.child(imagePath)
+                .putData(imageData!, metadata: metadata) { (metadata, error) in
+                    if let error = error {
+                        print("Error uploading: \(error)")
+                        return
+                    }
+                    /**save image to firebase database*/
+                    let fullurl = metadata!.downloadURL()!.absoluteString
+                    print("fulurl \(metadata!.downloadURL()!.absoluteString)")
+                    let imageDict = ["downloadURL":fullurl,"created_at":NSDate().timeIntervalSince1970,"userUID":User.currentUserUid]
+                    //build a new root node called tweets
+                    let imageRef = DataService.rootRef.child("images").childByAutoId()
+                    //underneath the root, there is text,created_at,userUID
+                    imageRef.setValue(imageDict)
+                    
+                    //append new images.key inside "users.images"
+                    DataService.userRef.child(User.currentUserUid).child("images").updateChildValues([imageRef.key:true])
+                    
+                    /**/
+            }
+        }
         
         let storyboard = UIStoryboard(name: "AfterLogin", bundle: NSBundle.mainBundle())
         let ChatListViewController = storyboard.instantiateViewControllerWithIdentifier("TabBarVC")
