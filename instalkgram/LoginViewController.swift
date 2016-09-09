@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, GIDSignInUIDelegate {
 
     @IBOutlet weak var passwordTxt: UITextField!
     
@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        GIDSignIn.sharedInstance().uiDelegate = self
         let tap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
@@ -55,7 +55,7 @@ class LoginViewController: UIViewController {
                 User.getSingleton.storeUserSession(username)
                 
                 //...To do: to the homepage...
-                self.performSegueWithIdentifier("LoginSegue", sender: nil)
+                //self.performSegueWithIdentifier("LoginSegue", sender: nil)
             } else {
                 //failed
                 let alert = UIAlertController(title: "Sign In Failed", message: error?.localizedDescription, preferredStyle: .Alert)
