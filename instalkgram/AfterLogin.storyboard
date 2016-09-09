@@ -8,7 +8,7 @@
         <!--New Post-->
         <scene sceneID="69k-Va-nPj">
             <objects>
-                <viewController id="4UY-xd-y8Q" sceneMemberID="viewController">
+                <viewController id="4UY-xd-y8Q" customClass="PhotoViewController" customModule="instalkgram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lrL-7E-bzs"/>
                         <viewControllerLayoutGuide type="bottom" id="6bd-Bm-3cG"/>
@@ -52,7 +52,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KaM-H1-qwF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2624" y="165"/>
+            <point key="canvasLocation" x="2618" y="171"/>
         </scene>
         <!--instalkgram-->
         <scene sceneID="hbi-Rm-Kv8">
@@ -95,7 +95,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="f1L-Sd-yEM">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="ybX-jH-BS1" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarVC" automaticallyAdjustsScrollViewInsets="NO" id="ybX-jH-BS1" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="sgf-KJ-yg8">
                         <autoresizingMask key="autoresizingMask"/>
