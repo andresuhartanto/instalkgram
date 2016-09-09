@@ -44,6 +44,8 @@ public class User{
             NSUserDefaults.standardUserDefaults().setObject(user.uid, forKey: User.sessionKey)
             userDisplayName=username
         }
+        
+        print("Stored \(NSUserDefaults.standardUserDefaults().objectForKey(User.sessionKey) as! String)")
     }
     
     func removeUserSession() {

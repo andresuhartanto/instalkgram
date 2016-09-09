@@ -18,6 +18,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         FIRApp.configure()
         
+        if let _ = NSUserDefaults.standardUserDefaults().objectForKey(User.sessionKey) as? String{
+            // load storyboard
+            let storyboard = UIStoryboard(name: "AfterLogin", bundle: NSBundle.mainBundle())
+            
+            // load view controller with the storyboardID of ChatListViewController
+            let ChatListViewController = storyboard.instantiateViewControllerWithIdentifier("TabBarVC")
+            
+            self.window?.rootViewController = ChatListViewController
+            
+        }
+        
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
@@ -43,6 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
                 //NSUserDefaults.standardUserDefaults().setObject(user.uid, forKey: "MyIosChatUID")
                 User.getSingleton.storeUserSession(username)
                 
+                print("key \(NSUserDefaults.standardUserDefaults().objectForKey("MyIosChatUID"))")
                 let currentUserRef = DataService.userRef.child(firebaseUser.uid)
                 let userDict = ["email": email, "username": username]
                 

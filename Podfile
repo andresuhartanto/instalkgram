@@ -12,5 +12,6 @@ target 'instalkgram' do
     pod 'GoogleSignIn'
     pod 'Fusuma'
     pod 'Firebase/Storage'
+    pod 'SDWebImage', '~>3.8'
 
 end
