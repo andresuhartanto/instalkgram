@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var numberOfPost: UILabel!
@@ -20,16 +20,22 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.title = User.currentUserName
         
-        DataService.rootRef.child("images").observeEventType(.ChildAdded, withBlock: {(snapshot) in
-            if let imagePost = Image.init(snapshot: snapshot){
-                self.imageForPost.append(imagePost)
-                self.collectionView.reloadData()
-            }
+        self.profilePicture.layer.cornerRadius = 25
+        self.navigationItem.title = User.currentUserName
+        self.collectionView.backgroundColor = UIColor.whiteColor()
         
-        
+        DataService.userRef.child(User.currentUserUid).child("images").observeEventType(.ChildAdded , withBlock: { (snapshot) in
+            
+            print("key \(snapshot.key)")
+            DataService.rootRef.child("images").child(snapshot.key).observeEventType(.Value , withBlock: { (snap) in
+                print("imagekey \(snap.key)")
+                if let image = Image.init(snapshot: snap){
+                    self.imageForPost.append(image)
+                    self.collectionView.reloadData()
+                }
+            
+            })
         
         })
     }
@@ -76,6 +82,19 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         cell?.postImage.sd_setImageWithURL(NSURL(string:  oneImagePost.downloadURL))
         
         return cell!
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let imageWidth = self.view.frame.size.width / 3
+        return CGSizeMake(imageWidth, imageWidth)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 0
     }
     
 

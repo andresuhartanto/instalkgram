@@ -13,6 +13,7 @@ import FirebaseStorage
 class Sections: UIView {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
+    
 
     /*
     // Only override drawRect: if you perform custom drawing.

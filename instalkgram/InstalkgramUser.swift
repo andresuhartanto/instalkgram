@@ -20,7 +20,7 @@ public class InstallkgramUser{
     //var photo: String
     var followingUsers  = [String]()
     var followers  = [String]()
-
+    var images = [Image]()
     
     init(){
         username = ""
@@ -67,9 +67,8 @@ public class InstallkgramUser{
             self.lastName = ""
         }
         
-        //decodeRelation(dict["relations"])
         
-    }
+
     
     
 //    func decodeRelation(relationDict:AnyObject?) {
@@ -78,4 +77,4 @@ public class InstallkgramUser{
     
 
 
-}
+    }}
