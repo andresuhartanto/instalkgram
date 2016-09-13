@@ -12,8 +12,8 @@ import FirebaseDatabase
 struct DataService {
     static var rootRef = FIRDatabase.database().reference()
     static var userRef = FIRDatabase.database().reference().child("users")
-    static var followingRelationRef = FIRDatabase.database().reference().child("relation").child("following")
-    static var followerRelationRef = FIRDatabase.database().reference().child("relation").child("follower")
+    static var relationRef = FIRDatabase.database().reference().child("relation")
+    //static var followerRelationRef = FIRDatabase.database().reference().child("relation").child("follower")
     
 
 }

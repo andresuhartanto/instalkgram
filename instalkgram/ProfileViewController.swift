@@ -21,6 +21,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = User.currentUserName
+        
         DataService.rootRef.child("images").observeEventType(.ChildAdded, withBlock: {(snapshot) in
             if let imagePost = Image.init(snapshot: snapshot){
                 self.imageForPost.append(imagePost)
