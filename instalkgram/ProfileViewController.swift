@@ -9,12 +9,27 @@
 import UIKit
 import FirebaseAuth
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var numberOfPost: UILabel!
+    @IBOutlet weak var numberOfFollowers: UILabel!
+    @IBOutlet weak var numberOfFollowing: UILabel!
+    
+    var imageForPost = [Image]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        DataService.rootRef.child("images").observeEventType(.ChildAdded, withBlock: {(snapshot) in
+            if let imagePost = Image.init(snapshot: snapshot){
+                self.imageForPost.append(imagePost)
+                self.collectionView.reloadData()
+            }
+        
+        
+        
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,8 +52,6 @@ class ProfileViewController: UIViewController {
         
         presentViewController(alertController, animated: true, completion: nil)
         
-        
-
     }
     
     func goBackToLogin(){
@@ -47,5 +60,21 @@ class ProfileViewController: UIViewController {
         let LogInViewController = storyboard.instantiateViewControllerWithIdentifier("LoginVC")
         appDelegateTemp.window?!.rootViewController = LogInViewController
     }
+    
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.imageForPost.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as? ProfileCollectionViewCell
+        
+        let oneImagePost = imageForPost[indexPath.row]
+        
+        cell?.postImage.sd_setImageWithURL(NSURL(string:  oneImagePost.downloadURL))
+        
+        return cell!
+    }
+    
 
 }

@@ -16,10 +16,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBOutlet weak var feedTableView: UITableView!
     var imagesForFeed = [Image]()
+    var usernameForFeed = [String]()
     var imageCache = SDImageCache(namespace: "nameSpaceImageCacheXPTO")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let nib = UINib(nibName: "Sections", bundle: nil)
+        feedTableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "Sections")
+        
+        self.usernameForFeed.append(User.currentUserName)
+
         
         DataService.rootRef.child("images").observeEventType(.ChildAdded, withBlock: { (snapshot) in
             if let image = Image.init(snapshot: snapshot){
@@ -44,9 +51,23 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //    }
     
     
-//    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        <#code#>
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return usernameForFeed.count
+    }
+    
+//    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return usernameForFeed[section]
 //    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = NSBundle.mainBundle().loadNibNamed("Sections", owner: 0, options: nil)[0] as? Sections
+        view?.usernameLabel.text = "Test sections"
+        return view
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return imagesForFeed.count
@@ -59,58 +80,25 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("FeedCell") as? FeedTableViewCell
         let oneImage = imagesForFeed[indexPath.row]
+        cell?.imagePost.sd_setImageWithURL(NSURL(string: oneImage.downloadURL))
         
         /**sergio code*/
-        if (NSFileManager.defaultManager().fileExistsAtPath(documentPahth()+"image1.jpg")){
-            
-            let savedImage = UIImage(contentsOfFile: documentPahth()+"image1.jpg")
-            cell?.imagePost?.image = savedImage
-            
-        } else {
-        
-            cell?.imagePost?.sd_setImageWithURL(NSURL(string: oneImage.downloadURL), placeholderImage: UIImage(named: "placeholder"), completed: { (image, error, cacheType, imageURL) in
-                
-                // save to directory
-                    let filePath = self.documentPahth()
-                    let imageData = UIImageJPEGRepresentation(image, 0.8)
-                    NSFileManager.defaultManager().createFileAtPath(filePath+"image1.jpg", contents: imageData, attributes: nil)
-        
-            })
-        }
-         /*end of sergio code */
-        
-        
-//        /**copy from internet**/
-//        imageCache.queryDiskCacheForKey(oneImage.downloadURL, done: {(image: UIImage, cacheType: SDImageCacheType) -> Void in
-//            if image {
-//                completedBlock(image, nil)
-//                // return block
-//            }
-//            else {
-//                /////////
-//                // *    Request Image
-//                /////////
-//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {() -> Void in
-//                    SDWebImageDownloader.sharedDownloader().downloadImageWithURL(url, options: SDWebImageProgressiveDownload, progress: {(receivedSize: Int, expectedSize: Int) -> Void in
-//                        
-//                        }, completed: {(image: UIImage, data: NSData, error: NSError, finished: Bool) -> Void in
-//                            if finished && image {
-//                                /////////
-//                                // *    Save Image
-//                                /////////
-//                                imageCacheProgram.storeImage(image, recalculateFromImage: false, imageData: data, forKey: key, toDisk: true)
-//                                completedBlock(image, error)
-//                            } //end if
-//                    }) //end completed image:
-//                    
-//                }) //end completed SDWebImageDownloader
-//            } //end else
-//        }) //end queryDiskCacheForKey
-        
-            
-                                
-        
-//        cell?.imagePost.sd_setImageWithURL(NSURL(string: oneImage.downloadURL))
+//        if (NSFileManager.defaultManager().fileExistsAtPath(documentPahth()+"image1.jpg")){
+//            
+//            let savedImage = UIImage(contentsOfFile: documentPahth()+"image1.jpg")
+//            cell?.imagePost?.image = savedImage
+//            
+//        } else {
+//        
+//            cell?.imagePost?.sd_setImageWithURL(NSURL(string: oneImage.downloadURL), placeholderImage: UIImage(named: "placeholder"), completed: { (image, error, cacheType, imageURL) in
+//                
+//                // save to directory
+//                    let filePath = self.documentPahth()
+//                    let imageData = UIImageJPEGRepresentation(image, 0.8)
+//                    NSFileManager.defaultManager().createFileAtPath(filePath+"image1.jpg", contents: imageData, attributes: nil)
+//        
+//            })
+//        }
         
         return cell!
     }
