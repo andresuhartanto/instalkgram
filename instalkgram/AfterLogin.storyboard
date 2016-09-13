@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ybX-jH-BS1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ybX-jH-BS1">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--New Post-->
@@ -155,17 +156,32 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="bU6-Jg-JdB">
-                        <barButtonItem key="rightBarButtonItem" image="logout-outlined-square-button-with-right-arrow" id="WsI-RG-TK6">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="logoutButoon:" destination="qlI-t5-86U" id="CpI-Sq-4Gn"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="logout-outlined-square-button-with-right-arrow" id="WsI-RG-TK6">
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="logoutButoon:" destination="qlI-t5-86U" id="CpI-Sq-4Gn"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Follow" id="X8E-0r-TvG">
+                                <connections>
+                                    <segue destination="768-p4-sZk" kind="show" id="Vzu-uc-CLM"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xEn-tO-Vn1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2624" y="830"/>
+        </scene>
+        <!--RelationshipStoryboard-->
+        <scene sceneID="Icy-pM-2Rj">
+            <objects>
+                <viewControllerPlaceholder storyboardName="RelationshipStoryboard" id="768-p4-sZk" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ysK-nD-BSP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3077" y="733"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="f1L-Sd-yEM">
