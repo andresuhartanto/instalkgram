@@ -16,6 +16,7 @@ public class InstallkgramUser{
     var lastName: String
     var firstName: String
     var createdAt: Double
+    var email: String
     //var photo: String
     var followingUsers  = [String]()
     var followers  = [String]()
@@ -27,6 +28,7 @@ public class InstallkgramUser{
         createdAt = 0.0
         firstName = ""
         lastName = ""
+        email = ""
     }
     
     init?(snapshot: FIRDataSnapshot){
@@ -41,11 +43,16 @@ public class InstallkgramUser{
             self.username = ""
         }
         
-        
         if let createdAt = dict["created_at"] as? Double {
             self.createdAt = createdAt
         } else {
             self.createdAt = 0.0
+        }
+        
+        if let email = dict["email"] as? String{
+            self.email = email
+        }else {
+            self.email = ""
         }
         
         if let firstName = dict["firstName"] as? String{

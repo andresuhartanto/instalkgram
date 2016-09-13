@@ -62,8 +62,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 
                 print("username \(username)")
                 //User.getSingleton.storeUserSession(username)
+
                 
-                //...To do: to the homepage...
                 self.performSegueWithIdentifier("LogInSegue", sender: nil)
             } else {
                 //failed
