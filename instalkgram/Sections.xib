@@ -11,28 +11,34 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EnQ-YQ-dQP">
-                    <rect key="frame" x="8" y="0.0" width="50" height="50"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="PkD-oc-oY1"/>
-                        <constraint firstAttribute="width" constant="50" id="uV7-EC-E5o"/>
-                    </constraints>
-                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username Here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sAX-iE-Nr9">
-                    <rect key="frame" x="66" y="13" width="140" height="24"/>
+                    <rect key="frame" x="56" y="13" width="140" height="24"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EnQ-YQ-dQP">
+                    <rect key="frame" x="8" y="5" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="PkD-oc-oY1"/>
+                        <constraint firstAttribute="width" constant="40" id="uV7-EC-E5o"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="EnQ-YQ-dQP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="6xo-nY-gPd"/>
                 <constraint firstItem="sAX-iE-Nr9" firstAttribute="leading" secondItem="EnQ-YQ-dQP" secondAttribute="trailing" constant="8" id="AzP-SS-PMD"/>
                 <constraint firstItem="sAX-iE-Nr9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="13" id="Sdg-t7-Rr3"/>
                 <constraint firstItem="EnQ-YQ-dQP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="VeR-Yn-6mT"/>
                 <constraint firstItem="EnQ-YQ-dQP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="fWb-Ac-3K3"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="VeR-Yn-6mT"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="imageView" destination="EnQ-YQ-dQP" id="Lcu-nD-tfm"/>
                 <outlet property="usernameLabel" destination="sAX-iE-Nr9" id="leA-f1-wrC"/>

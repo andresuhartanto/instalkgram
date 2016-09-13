@@ -19,7 +19,7 @@ public class InstallkgramUser{
     //var photo: String
     var followingUsers  = [String]()
     var followers  = [String]()
-
+    var images = [Image]()
     
     init(){
         username = ""
@@ -48,12 +48,6 @@ public class InstallkgramUser{
             self.createdAt = 0.0
         }
         
-        if let userID = dict["userUID"] as? String{
-            self.userUID = userID
-        }else {
-            self.userUID = ""
-        }
-        
         if let firstName = dict["firstName"] as? String{
             self.firstName = firstName
         }else {
@@ -66,9 +60,8 @@ public class InstallkgramUser{
             self.lastName = ""
         }
         
-        //decodeRelation(dict["relations"])
         
-    }
+
     
     
 //    func decodeRelation(relationDict:AnyObject?) {
@@ -77,4 +70,4 @@ public class InstallkgramUser{
     
 
 
-}
+    }}
