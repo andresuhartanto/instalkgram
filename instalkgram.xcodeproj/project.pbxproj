@@ -28,6 +28,10 @@
 		F123FE871D8161B000689D3F /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F123FE861D8161B000689D3F /* DataService.swift */; };
 		F123FE891D81654800689D3F /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F123FE881D81654800689D3F /* WelcomeViewController.swift */; };
 		F123FE8B1D816CC300689D3F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F123FE8A1D816CC300689D3F /* LoginViewController.swift */; };
+		F13B42A01D85B84000340A81 /* RelationshipStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F13B429F1D85B84000340A81 /* RelationshipStoryboard.storyboard */; };
+		F13B42A21D85B89C00340A81 /* RelationshipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13B42A11D85B89C00340A81 /* RelationshipViewController.swift */; };
+		F13B42A41D85BAC400340A81 /* RelationshipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13B42A31D85BAC400340A81 /* RelationshipTableViewCell.swift */; };
+		F16B87301D866B5800749059 /* InstalkgramUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16B872F1D866B5800749059 /* InstalkgramUser.swift */; };
 		F1AB921E1D82482B00578D03 /* Instalkgram-Bridging-Header.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AB921D1D82482B00578D03 /* Instalkgram-Bridging-Header.m */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +61,10 @@
 		F123FE861D8161B000689D3F /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		F123FE881D81654800689D3F /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		F123FE8A1D816CC300689D3F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F13B429F1D85B84000340A81 /* RelationshipStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RelationshipStoryboard.storyboard; sourceTree = "<group>"; };
+		F13B42A11D85B89C00340A81 /* RelationshipViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationshipViewController.swift; sourceTree = "<group>"; };
+		F13B42A31D85BAC400340A81 /* RelationshipTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationshipTableViewCell.swift; sourceTree = "<group>"; };
+		F16B872F1D866B5800749059 /* InstalkgramUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstalkgramUser.swift; sourceTree = "<group>"; };
 		F1AB921C1D82482A00578D03 /* instalkgram-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "instalkgram-Bridging-Header.h"; sourceTree = "<group>"; };
 		F1AB921D1D82482B00578D03 /* Instalkgram-Bridging-Header.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Instalkgram-Bridging-Header.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,12 +110,14 @@
 		65B6B65D1D81133400B844BC /* instalkgram */ = {
 			isa = PBXGroup;
 			children = (
-				65B6B65E1D81133400B844BC /* AppDelegate.swift */,
 				F123FE861D8161B000689D3F /* DataService.swift */,
-				65B6B6601D81133400B844BC /* SignUpViewController.swift */,
-				F123FE841D81511700689D3F /* User.swift */,
 				65ECA18F1D82910B00178EB2 /* StorageService.swift */,
+				F16B872F1D866B5800749059 /* InstalkgramUser.swift */,
+				65ECA1951D82B54D00178EB2 /* Image.swift */,
+				F123FE841D81511700689D3F /* User.swift */,
 				65B6B6621D81133400B844BC /* Main.storyboard */,
+				65B6B65E1D81133400B844BC /* AppDelegate.swift */,
+				65B6B6601D81133400B844BC /* SignUpViewController.swift */,
 				F123FE8A1D816CC300689D3F /* LoginViewController.swift */,
 				F123FE881D81654800689D3F /* WelcomeViewController.swift */,
 				6544066C1D825CF9006E636E /* PhotoViewController.swift */,
@@ -121,6 +131,9 @@
 				65B6B6651D81133400B844BC /* Assets.xcassets */,
 				65B6B6671D81133400B844BC /* LaunchScreen.storyboard */,
 				651003851D8175E300F3CFEC /* AfterLogin.storyboard */,
+				F13B42A31D85BAC400340A81 /* RelationshipTableViewCell.swift */,
+				F13B42A11D85B89C00340A81 /* RelationshipViewController.swift */,
+				F13B429F1D85B84000340A81 /* RelationshipStoryboard.storyboard */,
 				65B6B6701D8151C400B844BC /* GoogleService-Info.plist */,
 				65B6B66A1D81133400B844BC /* Info.plist */,
 				F1AB921D1D82482B00578D03 /* Instalkgram-Bridging-Header.m */,
@@ -204,6 +217,7 @@
 				65B6B6691D81133400B844BC /* LaunchScreen.storyboard in Resources */,
 				65B6B6661D81133400B844BC /* Assets.xcassets in Resources */,
 				657593731D87958A00221E6D /* Sections.xib in Resources */,
+				F13B42A01D85B84000340A81 /* RelationshipStoryboard.storyboard in Resources */,
 				65B6B6641D81133400B844BC /* Main.storyboard in Resources */,
 				65B6B6711D8151C400B844BC /* GoogleService-Info.plist in Resources */,
 			);
@@ -265,17 +279,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				F123FE8B1D816CC300689D3F /* LoginViewController.swift in Sources */,
+				F13B42A41D85BAC400340A81 /* RelationshipTableViewCell.swift in Sources */,
 				65ECA1941D829BA800178EB2 /* FeedTableViewCell.swift in Sources */,
 				F1AB921E1D82482B00578D03 /* Instalkgram-Bridging-Header.m in Sources */,
 				F123FE891D81654800689D3F /* WelcomeViewController.swift in Sources */,
 				657593771D87963B00221E6D /* Sections.swift in Sources */,
 				65B6B6611D81133400B844BC /* SignUpViewController.swift in Sources */,
 				65B6B65F1D81133400B844BC /* AppDelegate.swift in Sources */,
+				F13B42A21D85B89C00340A81 /* RelationshipViewController.swift in Sources */,
 				65ECA1961D82B54D00178EB2 /* Image.swift in Sources */,
 				65ECA1901D82910B00178EB2 /* StorageService.swift in Sources */,
 				6544066D1D825CF9006E636E /* PhotoViewController.swift in Sources */,
 				65ECA1921D829B8E00178EB2 /* HomeViewController.swift in Sources */,
 				65DB66581D86C5E800F07759 /* ProfileCollectionViewCell.swift in Sources */,
+				F16B87301D866B5800749059 /* InstalkgramUser.swift in Sources */,
 				6544066F1D826D84006E636E /* ProfileViewController.swift in Sources */,
 				F123FE851D81511700689D3F /* User.swift in Sources */,
 				F123FE871D8161B000689D3F /* DataService.swift in Sources */,

@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         FIRApp.configure()
         
-        if let _ = NSUserDefaults.standardUserDefaults().objectForKey(User.sessionKey) as? String{
+        //if let _ = NSUserDefaults.standardUserDefaults().objectForKey(User.sessionKey) as? String{
+        if User.getSingleton.isUserLoggedIn() {
             // load storyboard
             let storyboard = UIStoryboard(name: "AfterLogin", bundle: NSBundle.mainBundle())
             
@@ -54,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
                 //NSUserDefaults.standardUserDefaults().setObject(user.uid, forKey: "MyIosChatUID")
                 User.getSingleton.storeUserSession(username)
                 
-                print("key \(NSUserDefaults.standardUserDefaults().objectForKey("MyIosChatUID"))")
+                //print("key \(NSUserDefaults.standardUserDefaults().objectForKey("MyIosChatUID"))")
                 let currentUserRef = DataService.userRef.child(firebaseUser.uid)
                 let userDict = ["email": email, "username": username]
                 

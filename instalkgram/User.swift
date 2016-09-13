@@ -45,11 +45,18 @@ public class User{
             userDisplayName=username
         }
         
-        print("Stored \(NSUserDefaults.standardUserDefaults().objectForKey(User.sessionKey) as! String)")
+        //print("Stored \(NSUserDefaults.standardUserDefaults().objectForKey(User.sessionKey) as! String)")
     }
     
     func removeUserSession() {
         NSUserDefaults.standardUserDefaults().removeObjectForKey(User.sessionKey)
     }
     
+    func isUserLoggedIn() -> Bool {
+        if let _ = NSUserDefaults.standardUserDefaults().objectForKey(User.sessionKey) as? String{
+            return true
+        } else {
+            return false
+        }
+    }
 }

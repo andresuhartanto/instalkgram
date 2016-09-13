@@ -17,7 +17,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var feedTableView: UITableView!
     var imagesForFeed = [Image]()
     var usernameForFeed = [String]()
-    
+    var imageCache = SDImageCache(namespace: "nameSpaceImageCacheXPTO")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +35,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
 
         })
+        
+        //self.imageCache = SDImageCache(namespace: "nameSpaceImageCacheXPTO")
+        imageCache.maxCacheAge = 60*60*3 //seconds
         
         
     }
@@ -77,7 +80,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("FeedCell") as? FeedTableViewCell
         let oneImage = imagesForFeed[indexPath.row]
-//
+        cell?.imagePost.sd_setImageWithURL(NSURL(string: oneImage.downloadURL))
+        
+        /**sergio code*/
 //        if (NSFileManager.defaultManager().fileExistsAtPath(documentPahth()+"image1.jpg")){
 //            
 //            let savedImage = UIImage(contentsOfFile: documentPahth()+"image1.jpg")
@@ -94,8 +99,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //        
 //            })
 //        }
-//        
-        cell?.imagePost.sd_setImageWithURL(NSURL(string: oneImage.downloadURL))
         
         return cell!
     }
