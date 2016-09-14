@@ -14,12 +14,16 @@ class Image {
     var userUID : String
     var createdAt: Double
     var imageID: String
+    var numberOfLikes: Int
+    var usersLikes: [String]
     
     init(){
         downloadURL = ""
         userUID = ""
         createdAt = 0.0
         imageID = ""
+        numberOfLikes = 0
+        usersLikes = []
     }
     
     init?(snapshot: FIRDataSnapshot){
@@ -44,6 +48,18 @@ class Image {
             self.userUID = userID
         }else {
             self.userUID = ""
+        }
+        
+        if let numberOfLikes = dict["numberOfLikes"] as? Int{
+            self.numberOfLikes = numberOfLikes
+        }else {
+            self.numberOfLikes = 0
+        }
+        
+        if let usersLikes = dict["usersLikes"] as? [String]{
+            self.usersLikes = usersLikes
+        }else {
+            self.usersLikes = []
         }
     }
     
