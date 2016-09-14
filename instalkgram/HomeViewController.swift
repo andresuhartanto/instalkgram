@@ -12,7 +12,7 @@ import FirebaseStorage
 import FirebaseDatabase
 import SDWebImage
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var feedTableView: UITableView!
     var imagesForFeed = [Image]()
@@ -53,6 +53,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             })
         })
     }
+    
     
     
     func retrieveFeed(username:InstallkgramUser){

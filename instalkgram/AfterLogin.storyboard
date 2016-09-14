@@ -256,8 +256,8 @@
                                             </mask>
                                         </variation>
                                     </view>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wFf-Za-dak">
-                                        <rect key="frame" x="0.0" y="135" width="600" height="403"/>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wFf-Za-dak">
+                                        <rect key="frame" x="0.0" y="135" width="600" height="352"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="352" id="Sbt-sZ-oHz"/>
                                             <constraint firstAttribute="height" constant="297" id="jnw-21-uBH"/>

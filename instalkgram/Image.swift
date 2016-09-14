@@ -14,12 +14,14 @@ class Image {
     var userUID : String
     var createdAt: Double
     var imageID: String
+    var filename : String
     
     init(){
         downloadURL = ""
         userUID = ""
         createdAt = 0.0
         imageID = ""
+        filename = ""
     }
     
     init?(snapshot: FIRDataSnapshot){
@@ -44,6 +46,12 @@ class Image {
             self.userUID = userID
         }else {
             self.userUID = ""
+        }
+        
+        if let fname = dict["filename"] as? String {
+            self.filename = fname
+        } else {
+            self.filename = ""
         }
     }
     

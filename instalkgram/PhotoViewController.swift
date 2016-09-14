@@ -62,9 +62,10 @@ class PhotoViewController: UIViewController, FusumaDelegate {
                         return
                     }
                     /**save image to firebase database*/
+                    let filename = imagePath
                     let fullurl = metadata!.downloadURL()!.absoluteString
                     print("fulurl \(metadata!.downloadURL()!.absoluteString)")
-                    let imageDict = ["downloadURL":fullurl,"created_at":NSDate().timeIntervalSince1970,"userUID":User.currentUserUid]
+                    let imageDict = ["downloadURL":fullurl,"created_at":NSDate().timeIntervalSince1970,"userUID":User.currentUserUid, "filename":filename]
                     //build a new root node called tweets
                     let imageRef = DataService.rootRef.child("images").childByAutoId()
                     //underneath the root, there is text,created_at,userUID

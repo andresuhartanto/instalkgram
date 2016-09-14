@@ -97,5 +97,45 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         return 0
     }
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this image?", preferredStyle: .Alert)
+        let okaAction = UIAlertAction(title: "Yes", style: .Default) { (okayAction) in
+            
+            if let imgDeleted = self.imageForPost[indexPath.row] as? Image {
+                DataService.rootRef.child("images").child(imgDeleted.imageID).removeValue()
+                DataService.userRef.child(User.currentUserUid).child("images").child(imgDeleted.imageID).removeValue()
+                DataService.userRef.child(User.currentUserUid).child("feeds").child(imgDeleted.imageID).removeValue()
+                
+                //to do: to remove from firebase storage
+                if (imgDeleted.filename != "") {
+                    self.deleteImageFromStorage(imgDeleted)
+                }
+            
+                self.imageForPost.removeAtIndex(indexPath.row)
+                self.collectionView.reloadData()
+            }
+            
+        }
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .Default, handler: nil)
+        alert.addAction(okaAction)
+        alert.addAction(dismissAction)
+        
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func deleteImageFromStorage(imgDeleted: Image) {
+        
+        print("filename \(imgDeleted.filename)")
+        let imagesStorageRef = StorageService.storageRef.child("images/"+imgDeleted.filename)
+
+        imagesStorageRef.deleteWithCompletion { (error) in
+            if let error = error {
+                print("Error deleting: \(error)")
+                return
+            } else {
+                print("File deleted \(imgDeleted.filename)")
+            }
+        }
+    }
 
 }
