@@ -12,7 +12,7 @@ import FirebaseStorage
 import FirebaseDatabase
 import SDWebImage
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, TableViewCellDelegate {
 
     @IBOutlet weak var feedTableView: UITableView!
     var imagesForFeed = [Image]()
@@ -99,7 +99,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //        
 //            })
 //        }
-        
+        cell?.delegate = self
+        cell?.indexPath = indexPath
         return cell!
     }
     
@@ -141,5 +142,42 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //        
 //        }).resume()
 //    }
-
+    func itemLikeIndex(indexPath: NSIndexPath?) {
+        guard let imageIndexPath = indexPath else { return }
+        let oneImage = imagesForFeed[imageIndexPath.row]
+        
+        // Edit the image node
+        var userLikes = oneImage.usersLikes
+        
+        // check if user never like image
+        if userLikes.indexOf(User.currentUserUid) == nil {
+            // like
+            FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("numberOfLikes").setValue(oneImage.numberOfLikes+1)
+            userLikes.append(User.currentUserUid)
+            FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("userLikes").setValue(userLikes)
+        }
+        
+        
+        // Edit the user node
+        //FIRDatabase.database().reference().child("users").child(User.currentUserUid).child("imagesLikes").setValue(oneImage.imageID)
+        DataService.userRef.child(User.currentUserUid).child("imagesLikes").updateChildValues([oneImage.imageID:true])
+    }
+    
+    func itemDislikeIndex(indexPath: NSIndexPath?) {
+        guard let imageIndexPath = indexPath else { return }
+        let oneImage = imagesForFeed[imageIndexPath.row]
+        var userLikes = oneImage.usersLikes
+        
+        // check if user has like image before
+        if let index = userLikes.indexOf(User.currentUserUid) {
+            // dislike
+            FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("numberOfLikes").setValue(oneImage.numberOfLikes-1)
+            FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("userLikes").setValue(userLikes.removeAtIndex(index))
+        }
+    
+         FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("userLikes").setValue("")
+        
+         DataService.userRef.child(User.currentUserUid).child("imagesLikes").child(oneImage.imageID).removeValue()
+        
+    }
 }
