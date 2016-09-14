@@ -27,6 +27,15 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
     func dismissKeyboard() {
         self.view.endEditing(true)
     }
+    
+    @IBAction func loginViewButton(sender: UIButton) {
+        
+    }
+    
+    @IBAction func unwindToThisViewController(segue: UIStoryboardSegue) {
+        
+    }
+    
 
    
     @IBAction func onSignupButtonPressed(sender: UIButton) {

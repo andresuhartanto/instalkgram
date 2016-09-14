@@ -29,11 +29,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
 
     @IBAction func onNoAcctPressed(sender: UIButton) {
         
-        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let SignUpVCViewController = storyboard.instantiateViewControllerWithIdentifier("SignUpVC")
-        self.presentViewController(SignUpVCViewController, animated: true, completion: nil)
-        
     }
+    
+
     
     
     @IBAction func onLoginBtnPressed(sender: UIButton) {
