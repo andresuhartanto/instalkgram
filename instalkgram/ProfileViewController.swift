@@ -65,7 +65,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     func goBackToLogin(){
         let appDelegateTemp = UIApplication.sharedApplication().delegate!
         let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let LogInViewController = storyboard.instantiateViewControllerWithIdentifier("LoginVC")
+        let LogInViewController = storyboard.instantiateInitialViewController()
         appDelegateTemp.window?!.rootViewController = LogInViewController
     }
     

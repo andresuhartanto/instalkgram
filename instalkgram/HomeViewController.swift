@@ -24,62 +24,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        DataService.userRef.observeEventType(.ChildAdded, withBlock: {(snapshot) in
-//            
-//            if let username = InstallkgramUser.init(snapshot: snapshot){
-//                self.usernameForFeed.append(username)
-//                
-//       
-//                
-//                /**andre**/
-//                DataService.userRef.child(username.userUID).child("images").observeEventType(.ChildAdded , withBlock: { (snapshot) in
-//                   
-//                    //print("key \(snapshot.key)")
-//                    DataService.rootRef.child("images").child(snapshot.key).observeEventType(.Value , withBlock: { (snap) in
-//                        
-//                        //print("imagekey \(snap.key)")
-//                        if let image = Image.init(snapshot: snap){
-//                            username.images.append(image)
-//                            self.feedTableView.reloadData()
-//                        }
-//                        
-//                    })
-//                    
-//                })
-//                /**end of andre*/
-//                
-//            }
-//            
-//        }) //end snapshot
-        
-//                DataService.userRef.child(User.currentUserUid).child("following").observeEventType(.ChildAdded, withBlock: {(snapshot) in
-//                    DataService.userRef.child(snapshot.key).observeEventType(.ChildAdded, withBlock: {(snap1) in
-//        
-//                    if let username = InstallkgramUser.init(snapshot: snap1){
-//                        self.usernameForFeed.append(username)
-//                        
-//                        
-//                        DataService.userRef.child(User.currentUserUid).child("feeds").observeEventType(.ChildAdded, withBlock: {(snap2) in
-//                            DataService.rootRef.child("images").child(snap2.key).observeEventType(.Value, withBlock: {(snap3) in
-//                                if let image = Image.init(snapshot: snap3){
-//                                    username.images.append(image)
-//                                    self.feedTableView.reloadData()
-//                                }
-//
-//                            })
-//                        })
-//                        
-//                        }
-//                        
-//                    })
-//                    
-//        })
-        
-                        
-                        
-        
-        
-        DataService.userRef.child(User.currentUserUid).observeEventType(.Value, withBlock: {(snapself) in
+        DataService.userRef.child(User.currentUserUid).observeSingleEventOfType(.Value, withBlock: {(snapself) in
             print("snapselfkey \(snapself.key)")
             if let username = InstallkgramUser.init(snapshot: snapself){
                 self.usernameForFeed.append(username)
@@ -89,26 +34,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 User.getSingleton.storeUserSession(username.username)
                 }
             })
-            
-        
+        self.retrieveFollowedUsersImages()
+    }
+
+    func retrieveFollowedUsersImages(){
         DataService.userRef.child(User.currentUserUid).child("following").observeEventType(.ChildAdded, withBlock: {(snapshot) in
             print("snapshotkey \(snapshot.key)")
             
-            DataService.userRef.child(snapshot.key).observeEventType(.Value, withBlock: {(snap1) in
+            DataService.userRef.child(snapshot.key).observeSingleEventOfType(.Value, withBlock: {(snap1) in
                 
-            print("snap1key \(snap1.key)")
+                print("snap1key \(snap1.key)")
                 
                 if let username = InstallkgramUser.init(snapshot: snap1){
                     self.usernameForFeed.append(username)
                     self.retrieveFeed(username)
-            }
-            
+                }
+                
+            })
         })
-        })
-
-        //imageCache.maxCacheAge = 60*60*3 //seconds
-        
-        
     }
     
     
