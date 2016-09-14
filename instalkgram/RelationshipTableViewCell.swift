@@ -26,13 +26,13 @@ class RelationshipTableViewCell: UITableViewCell {
     
     @IBAction func onFollowingBtnPressed(sender: UIButton) {
         
-        if followBtn.titleLabel?.text=="+Following" {
-            self.followStatus=true
-            //followBtn.titleLabel?.text="Followed"
-        } else {
-            self.followStatus=false
-            //followBtn.titleLabel?.text="+Following"
-        }
+//        if followBtn.titleLabel?.text=="+Following" {
+//            self.followStatus=true
+//            //followBtn.titleLabel?.text="Followed"
+//        } else {
+//            self.followStatus=false
+//            //followBtn.titleLabel?.text="+Following"
+//        }
         
         delegate?.handleFollower(self,followStatus: self.followStatus)
     }
