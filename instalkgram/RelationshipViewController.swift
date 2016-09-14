@@ -12,8 +12,7 @@ class RelationshipViewController: UIViewController, UITableViewDelegate,UITableV
 
     @IBOutlet weak var tableview: UITableView!
     var suggestedListToFollow = [InstallkgramUser]()
-    
-    
+    //var suggest2 = Dictionary
    
     
     override func viewDidLoad() {
@@ -38,27 +37,40 @@ class RelationshipViewController: UIViewController, UITableViewDelegate,UITableV
             }
             
         })
-
-    
-        print("count \(self.suggestedListToFollow.count)")
-        for u in suggestedListToFollow {
-            print("\(u.userUID) ....\(u.username)")
-        }
-    
-    }
-
-    func suggestFollowing(){
         
-        //1. list all InstalkgramUser
-        DataService.userRef.observeEventType(.ChildAdded, withBlock: { (snapshot) in
-            if let iuser = InstallkgramUser.init(snapshot: snapshot){
-                self.suggestedListToFollow.append(iuser)
-                self.tableview.reloadData()
-            }
-            
-        })
+//        DataService.userRef.child(User.currentUserUid).child("following").observeEventType(.ChildAdded, withBlock: { (snapself) in
+//            if let iuser = InstallkgramUser.init(snapshot: snapself){
+//                self.suggestedListToFollow.append(iuser)
+//                self.tableview.reloadData()
+//            }
+//
+//        })
 
     }
+
+//    func suggestFollowing(){
+//        
+//        var array1 = [String]
+//        var array2 = [String]
+//        
+//        
+//        //1. list all InstalkgramUser
+//        DataService.userRef.observeEventType(.ChildAdded, withBlock: { (snapshot) in
+//            if let iuser = InstallkgramUser.init(snapshot: snapshot){
+//                array1.append(iuser)
+//            }
+//            
+//        })
+//        
+//        //2. list all InstalkgramUser
+//        DataService.userRef.child(User.currentUserUid).observeEventType(.Value, withBlock: { (snapshot) in
+//            if let iuser = InstallkgramUser.init(snapshot: snapshot){
+//                array2.append(iuser)
+//            }
+//            
+//        })
+//
+//    }
     
 
     func handleFollower (sender: RelationshipTableViewCell, followStatus: Bool){
@@ -72,16 +84,26 @@ class RelationshipViewController: UIViewController, UITableViewDelegate,UITableV
          3. in following user, add a follower relation
          **/
         
-        let aRelationDict = ["followingUserUID":followingUser.userUID ,"created_at":NSDate().timeIntervalSince1970,"followerUserUID":User.currentUserUid]
+        //let aRelationDict = ["followingUserUID":followingUser.userUID ,"created_at":NSDate().timeIntervalSince1970,"followerUserUID":User.currentUserUid]
         
-        let relationRef = DataService.relationRef.childByAutoId()
-        relationRef.setValue(aRelationDict)
+        //let relationRef = DataService.relationRef.childByAutoId()
+        //relationRef.setValue(aRelationDict)
         
-        DataService.userRef.child(User.currentUserUid).child("following").updateChildValues([relationRef.key:true])
+        DataService.userRef.child(User.currentUserUid).child("following").updateChildValues([followingUser.userUID:true])
+        //DataService.userRef.child(User.currentUserUid).child("following").setValue([tweetRef.key:true])
         
-        DataService.userRef.child(followingUser.userUID).child("follower").updateChildValues([relationRef.key:true])
+        DataService.userRef.child(followingUser.userUID).child("follower").updateChildValues([User.currentUserUid:true])
         
-        //suggestedListToFollow.removeAtIndex(sender.followBtn.tag)
+        DataService.userRef.child(followingUser.userUID).child("images").observeEventType(.ChildAdded, withBlock: {(snapshot) in
+            
+        DataService.userRef.child(User.currentUserUid).child("feeds").updateChildValues([snapshot.key:true])
+            
+            
+            
+        })
+        
+        
+        suggestedListToFollow.removeAtIndex(sender.followBtn.tag)
        
 //        if followStatus {
 //            sender.followBtn.titleLabel!.text="Followed"
