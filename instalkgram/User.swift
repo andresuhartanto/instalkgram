@@ -17,11 +17,14 @@ public class User{
     
     static var currentUserUid:  String {
         if let user = FIRAuth.auth()!.currentUser{
-            print("logged in \(user.uid)")
+            //print("logged in \(user.uid)")
+        
+        //print("Store \(NSUserDefaults.standardUserDefaults().objectForKey(User.sessionKey) as! String)")
+        //return NSUserDefaults.standardUserDefaults().objectForKey(User.sessionKey) as? String
+        return user.uid
         }
         
-        print("Store \(NSUserDefaults.standardUserDefaults().objectForKey(User.sessionKey) as! String)")
-        return NSUserDefaults.standardUserDefaults().objectForKey(User.sessionKey) as! String
+        return "UnableToFind"
     }
     
     static var currentUserName:  String {

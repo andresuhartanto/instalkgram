@@ -29,11 +29,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
 
     @IBAction func onNoAcctPressed(sender: UIButton) {
         
-        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let SignUpVCViewController = storyboard.instantiateViewControllerWithIdentifier("SignUpVC")
-        self.presentViewController(SignUpVCViewController, animated: true, completion: nil)
-        
     }
+    
+
     
     
     @IBAction func onLoginBtnPressed(sender: UIButton) {
@@ -47,18 +45,23 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         FIRAuth.auth()?.signInWithEmail(email, password: password, completion: { (user, error) in
             if let user = user{
                 //store into user defaults
+                
+                
                 var username=""
-                if let _ = user.displayName {
-                    username = user.displayName!
-                }
-                else {
-                    username = "UNKNOWN"
-                }
+
+                    DataService.userRef.child(user.uid).observeEventType(.Value, withBlock: { (snapshot) in
+                        if let myself = InstallkgramUser.init(snapshot: snapshot){
+                            username = myself.username
+                            User.getSingleton.storeUserSession(username)
+                        }
+                        
+                    })
+
                 
                 print("username \(username)")
-                User.getSingleton.storeUserSession(username)
+                //User.getSingleton.storeUserSession(username)
+
                 
-                //...To do: to the homepage...
                 self.performSegueWithIdentifier("LogInSegue", sender: nil)
             } else {
                 //failed

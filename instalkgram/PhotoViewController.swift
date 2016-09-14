@@ -70,9 +70,15 @@ class PhotoViewController: UIViewController, FusumaDelegate {
                     //underneath the root, there is text,created_at,userUID
                     imageRef.setValue(imageDict)
                     
-                    
                     //append new images.key inside "users.images"
                     DataService.userRef.child(User.currentUserUid).child("images").updateChildValues([imageRef.key:true])
+                    
+                    //add to the follower's feeds
+                    DataService.userRef.child(User.currentUserUid).child("follower").observeEventType(.ChildAdded, withBlock: {(snapshot) in
+                        DataService.userRef.child(User.currentUserUid).child("feeds").updateChildValues([imageRef.key:true])
+                        DataService.userRef.child(snapshot.key).child("feeds").updateChildValues([imageRef.key:true])
+                    })
+                    
                     
                     // Caching the image
                     SDImageCache.sharedImageCache().storeImage(selectedImage, forKey: fullurl)

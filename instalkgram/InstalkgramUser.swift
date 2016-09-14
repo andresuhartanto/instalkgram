@@ -10,16 +10,17 @@ import Foundation
 import FirebaseDatabase
 
 public class InstallkgramUser{
-
+    
     var userUID: String
     var username: String
     var lastName: String
     var firstName: String
     var createdAt: Double
+    var email: String
     //var photo: String
-    var followingUsers  = [String]()
-    var followers  = [String]()
-
+    var followingDict=[String]()
+    var followerDict=[String]()
+    var images = [Image]()
     
     init(){
         username = ""
@@ -27,6 +28,7 @@ public class InstallkgramUser{
         createdAt = 0.0
         firstName = ""
         lastName = ""
+        email = ""
     }
     
     init?(snapshot: FIRDataSnapshot){
@@ -34,13 +36,12 @@ public class InstallkgramUser{
         
         userUID = snapshot.key
         
-        print("\(userUID) ...\(snapshot.key)...\(dict["username"])")
+        print("dictionary \(dict)")
         if let dictUsername = dict["username"] as? String {
             self.username = dictUsername
         } else {
             self.username = ""
         }
-        
         
         if let createdAt = dict["created_at"] as? Double {
             self.createdAt = createdAt
@@ -48,10 +49,10 @@ public class InstallkgramUser{
             self.createdAt = 0.0
         }
         
-        if let userID = dict["userUID"] as? String{
-            self.userUID = userID
+        if let email = dict["email"] as? String{
+            self.email = email
         }else {
-            self.userUID = ""
+            self.email = ""
         }
         
         if let firstName = dict["firstName"] as? String{
@@ -66,15 +67,10 @@ public class InstallkgramUser{
             self.lastName = ""
         }
         
-        //decodeRelation(dict["relations"])
         
+        //self.retrieveRelation()
+        //print("step1.1 \(self.userUID)...\(self.username)")
+    
     }
     
-    
-//    func decodeRelation(relationDict:AnyObject?) {
-//        guard let
-//    }
-    
-
-
 }
