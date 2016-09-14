@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8Fu-oj-5Kr">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -91,7 +91,8 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="I have an account"/>
                                 <connections>
-                                    <segue destination="YQP-Kx-Rcq" kind="presentation" identifier="LoginSegue" id="Ls7-h3-9az"/>
+                                    <action selector="loginViewButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aNN-uv-ADj"/>
+                                    <segue destination="YQP-Kx-Rcq" kind="show" id="SaK-Du-c7w"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Instalkgram_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="5fW-Zr-48y">
@@ -149,6 +150,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="Xnv-3Y-GdR"/>
                     <connections>
                         <outlet property="emailTxt" destination="oxI-mt-R0n" id="6UY-Tq-SRx"/>
                         <outlet property="passwordTxt" destination="bPh-x3-3Wj" id="5NR-Ve-0tZ"/>
@@ -157,8 +159,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="Z5p-Ku-DSe" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="467" y="398"/>
+            <point key="canvasLocation" x="1279" y="398"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="9Fe-at-3Xb">
@@ -213,6 +216,7 @@
                                 </state>
                                 <connections>
                                     <action selector="onNoAcctPressed:" destination="YQP-Kx-Rcq" eventType="touchUpInside" id="LYI-mo-kdb"/>
+                                    <segue destination="Z5p-Ku-DSe" kind="unwind" unwindAction="unwindToThisViewController:" id="OIT-LH-VFa"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Instalkgram_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="4Sq-FA-cef">
@@ -281,7 +285,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Lc-CI-deG" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="467" y="1129"/>
+            <point key="canvasLocation" x="1287" y="1177"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="VZR-Iv-71w">
@@ -332,7 +336,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vr1-AA-U5s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1234" y="398"/>
+            <point key="canvasLocation" x="2046" y="398"/>
         </scene>
         <!--AfterLogin-->
         <scene sceneID="VfJ-eG-Rdg">
@@ -340,7 +344,7 @@
                 <viewControllerPlaceholder storyboardName="AfterLogin" id="Ddr-Od-4g6" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="42I-h5-QbR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1234" y="1129"/>
+            <point key="canvasLocation" x="1882" y="985"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Fps-RQ-Sy3">
@@ -358,7 +362,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="env-hB-cgE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2341" y="2"/>
+            <point key="canvasLocation" x="3153" y="2"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="jAe-5D-N2G">
@@ -376,7 +380,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J2F-19-uAd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2341" y="729"/>
+            <point key="canvasLocation" x="3153" y="729"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="QWh-ID-00c">
@@ -395,6 +399,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UiH-62-maq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2341" y="1437"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="guV-ho-5Hz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="8Fu-oj-5Kr" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0aR-aA-STz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="QU7-Gt-09Z"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QPg-FT-h94" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="467" y="398"/>
         </scene>
     </scenes>
     <resources>
