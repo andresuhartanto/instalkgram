@@ -55,6 +55,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
+    
     func retrieveFeed(username:InstallkgramUser){
         /**andre**/
         DataService.userRef.child(username.userUID).child("images").observeEventType(.ChildAdded , withBlock: { (snap2) in

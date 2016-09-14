@@ -16,6 +16,7 @@ class Image {
     var imageID: String
     var numberOfLikes: Int
     var usersLikes: [String]
+    var filename: String
     
     init(){
         downloadURL = ""
@@ -23,6 +24,7 @@ class Image {
         createdAt = 0.0
         imageID = ""
         numberOfLikes = 0
+        filename = ""
         usersLikes = []
     }
     
@@ -54,6 +56,12 @@ class Image {
             self.numberOfLikes = numberOfLikes
         }else {
             self.numberOfLikes = 0
+        }
+        
+        if let fname = dict["filename"] as? String{
+            self.filename  = fname
+        }else {
+            self.filename  = ""
         }
         
         if let usersLikes = dict["usersLikes"] as? [String]{
