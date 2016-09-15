@@ -102,19 +102,20 @@
                                                         <action selector="onLikeButtonPressed:" destination="XI8-yl-r62" eventType="touchUpInside" id="bug-79-b2E"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WX3-6l-x1Q">
-                                                    <rect key="frame" x="54" y="357" width="32" height="32"/>
-                                                    <state key="normal" image="comment"/>
-                                                    <connections>
-                                                        <action selector="onCommentButtonPressed:" destination="XI8-yl-r62" eventType="touchUpInside" id="9Vt-YT-arL"/>
-                                                    </connections>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1I-rp-AVs">
                                                     <rect key="frame" x="552" y="362" width="40" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WX3-6l-x1Q">
+                                                    <rect key="frame" x="54" y="357" width="32" height="32"/>
+                                                    <state key="normal" image="comment"/>
+                                                    <connections>
+                                                        <action selector="onCommentButtonPressed:" destination="XI8-yl-r62" eventType="touchUpInside" id="9Vt-YT-arL"/>
+                                                        <segue destination="q7k-iI-e36" kind="show" id="zd7-D3-2SG"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="WX3-6l-x1Q" firstAttribute="leading" secondItem="Oel-Wk-hea" secondAttribute="trailing" constant="14" id="ARH-AU-7qD"/>
@@ -166,6 +167,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5wI-P2-hVr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2623" y="-521"/>
+        </scene>
+        <!--Commend-->
+        <scene sceneID="v3f-4Q-Trj">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Commend" id="q7k-iI-e36" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aeL-Df-hch" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3124.5" y="-521"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Aa3-Pe-Mhj">
@@ -362,8 +371,8 @@
         <!--RelationshipStoryboard-->
         <scene sceneID="Icy-pM-2Rj">
             <objects>
-                <viewControllerPlaceholder storyboardName="RelationshipStoryboard" id="768-p4-sZk" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ysK-nD-BSP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="RelationshipStoryboard" id="768-p4-sZk" sceneMemberID="viewController"/>
             </objects>
             <point key="canvasLocation" x="3077" y="733"/>
         </scene>
