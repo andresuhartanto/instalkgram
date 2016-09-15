@@ -109,7 +109,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCellWithIdentifier("FeedCell") as? FeedTableViewCell
         let userInfo = usernameForFeed[indexPath.section]
         let oneImage = userInfo.images[indexPath.row]
-        //        let oneImage = imagesForFeed[indexPath.row]
+        //let oneImage = imagesForFeed[indexPath.row]
         cell?.imagePost.sd_setImageWithURL(NSURL(string: oneImage.downloadURL))
         
 
@@ -120,39 +120,37 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func itemLikeIndex(indexPath: NSIndexPath?) {
-        guard let imageIndexPath = indexPath else { return }
-        let oneImage = imagesForFeed[imageIndexPath.row]
+        //guard let imageIndexPath = indexPath else { return }
+        let userInfo = usernameForFeed[indexPath!.section]
+        let oneImage = userInfo.images[indexPath!.row]
         
         // Edit the image node
-        var userLikes = oneImage.usersLikes
+        //var userLikes = oneImage.usersLikes
         
         // check if user never like image
-        if userLikes.indexOf(User.currentUserUid) == nil {
-            // like
-            FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("numberOfLikes").setValue(oneImage.numberOfLikes+1)
-            userLikes.append(User.currentUserUid)
-            FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("userLikes").setValue(userLikes)
-        }
-        
-        
-        // Edit the user node
-        //FIRDatabase.database().reference().child("users").child(User.currentUserUid).child("imagesLikes").setValue(oneImage.imageID)
-        DataService.userRef.child(User.currentUserUid).child("imagesLikes").updateChildValues([oneImage.imageID:true])
+        FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("userLikes").child(User.currentUserUid).observeSingleEventOfType(.Value, withBlock: {snapshot in
+            // snapshot.value is "true" if user has liked this image before
+            if snapshot.value is NSNull {
+                FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("numberOfLikes").setValue(oneImage.numberOfLikes+1)
+                FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("userLikes").updateChildValues([User.currentUserUid : true])
+                DataService.userRef.child(User.currentUserUid).child("imagesLikes").updateChildValues([oneImage.imageID:true])
+            } else {
+                
+            }
+        })
     }
     
     func itemDislikeIndex(indexPath: NSIndexPath?) {
-        guard let imageIndexPath = indexPath else { return }
-        let oneImage = imagesForFeed[imageIndexPath.row]
-        var userLikes = oneImage.usersLikes
+        //guard let imageIndexPath = indexPath else { return }
+        let userInfo = usernameForFeed[indexPath!.section]
+        let oneImage = userInfo.images[indexPath!.row]
+        //var userLikes = oneImage.usersLikes
         
         // check if user has like image before
-        if let index = userLikes.indexOf(User.currentUserUid) {
-            // dislike
-            FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("numberOfLikes").setValue(oneImage.numberOfLikes-1)
-            FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("userLikes").setValue(userLikes.removeAtIndex(index))
-        }
-    
-         FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("userLikes").setValue("")
+        FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("numberOfLikes").setValue(oneImage.numberOfLikes-0)
+        FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("userLikes").child(User.currentUserUid).removeValue()
+
+
         
          DataService.userRef.child(User.currentUserUid).child("imagesLikes").child(oneImage.imageID).removeValue()
         
