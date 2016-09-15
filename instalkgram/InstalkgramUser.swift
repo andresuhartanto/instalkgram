@@ -17,7 +17,7 @@ public class InstallkgramUser{
     var firstName: String
     var createdAt: Double
     var email: String
-    //var photo: String
+    var photoURL: String?
     var followingDict=[String]()
     var followerDict=[String]()
     var images = [Image]()
@@ -29,6 +29,7 @@ public class InstallkgramUser{
         firstName = ""
         lastName = ""
         email = ""
+        photoURL = ""
     }
     
     init?(snapshot: FIRDataSnapshot){
@@ -67,6 +68,11 @@ public class InstallkgramUser{
             self.lastName = ""
         }
         
+//        if let photoURL = dict["profile_photo_url"] as? String{
+//            self.photoURL = photoURL
+//        }else {
+//            self.photoURL = ""
+//        }
         
         //self.retrieveRelation()
         //print("step1.1 \(self.userUID)...\(self.username)")

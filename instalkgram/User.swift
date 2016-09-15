@@ -15,6 +15,8 @@ public class User{
     static var singleton:User?
     var userDisplayName: String?
     
+    
+    
     static var currentUserUid:  String {
         if let user = FIRAuth.auth()!.currentUser{
             //print("logged in \(user.uid)")

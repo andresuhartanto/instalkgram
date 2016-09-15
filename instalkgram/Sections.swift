@@ -10,17 +10,30 @@ import UIKit
 import FirebaseAuth
 import FirebaseStorage
 
+protocol userTapedDelegate: class {
+    func handleUserTapped(Sender: Sections)
+}
+
 class Sections: UIView {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     
+    var userUID: String?
+    var username: String?
+    var delegate: userTapedDelegate?
+    
 
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
+    func setupTapGesture(){
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction(_:)))
+        usernameLabel.userInteractionEnabled = true
+        usernameLabel.gestureRecognizers = [tap]
     }
-    */
-
+    
+    
+    func tapFunction(sender: UITapGestureRecognizer) {
+        
+        delegate?.handleUserTapped(self)
+        
+    }
+    
 }

@@ -12,7 +12,7 @@ import FirebaseStorage
 import FirebaseDatabase
 import SDWebImage
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, TableViewCellDelegate {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, TableViewCellDelegate, userTapedDelegate {
 
     @IBOutlet weak var feedTableView: UITableView!
     var imagesForFeed = [Image]()
@@ -24,9 +24,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         DataService.userRef.child(User.currentUserUid).observeSingleEventOfType(.Value, withBlock: {(snapself) in
             print("snapselfkey \(snapself.key)")
             if let username = InstallkgramUser.init(snapshot: snapself){
+                
                 self.usernameForFeed.append(username)
                 self.retrieveFeed(username)
                 
@@ -60,12 +62,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         /**andre**/
         DataService.userRef.child(username.userUID).child("images").observeEventType(.ChildAdded , withBlock: { (snap2) in
             
+//            if let imagePost = Image.init(snapshot: snap2){
+//                self.imagesForFeed.append(imagePost)
+//            }
+            
             print("snap2key \(snap2.key)")
             DataService.rootRef.child("images").child(snap2.key).observeEventType(.Value , withBlock: { (snap) in
                 
                 print("imagekey \(snap.key)")
                 if let image = Image.init(snapshot: snap){
+                    print("username.username \(username.username)")
+                    image.userName = username.username
                     username.images.append(image)
+                    self.imagesForFeed.append(image)
                     self.feedTableView.reloadData()
                 }
                 
@@ -77,27 +86,45 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
+        
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return usernameForFeed.count
+        return imagesForFeed.count
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = NSBundle.mainBundle().loadNibNamed("Sections", owner: 0, options: nil)[0] as? Sections
-        
+        view?.setupTapGesture()
         view?.imageView.layer.cornerRadius = 20
         view?.imageView.backgroundColor = UIColor.grayColor()
         
-        view?.usernameLabel.text = usernameForFeed[section].username
+        let image = imagesForFeed[section]
+        view?.userUID =  image.userUID //usernameForFeed[section].userUID
+        view?.usernameLabel.text = image.userName //usernameForFeed[section].username
+        view?.username = image.userName
+        view?.delegate = self
         return view
     }
+    
+    func handleUserTapped(Sender: Sections) {
+        performSegueWithIdentifier("UserSegue", sender: Sender)
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destinantion = segue.destinationViewController as! OthersProfileViewController
+        let sections = sender as! Sections
+        destinantion.userID = sections.userUID!
+        destinantion.username = sections.username!
+        print(sections.username)
+    }
+    
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let userInfo = usernameForFeed[section]
-        return userInfo.images.count
+        return 1
+//        let userInfo = usernameForFeed[section]
+//        return userInfo.images.count
     }
     
     func documentPahth() -> String {
@@ -107,11 +134,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("FeedCell") as? FeedTableViewCell
-        let userInfo = usernameForFeed[indexPath.section]
-        let oneImage = userInfo.images[indexPath.row]
+//        let userInfo = usernameForFeed[indexPath.section]
+        let oneImage = imagesForFeed[indexPath.section]
         //let oneImage = imagesForFeed[indexPath.row]
         cell?.imagePost.sd_setImageWithURL(NSURL(string: oneImage.downloadURL))
-        
 
         cell?.delegate = self
         cell?.indexPath = indexPath

@@ -22,6 +22,10 @@
 		65DB66581D86C5E800F07759 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DB66571D86C5E800F07759 /* ProfileCollectionViewCell.swift */; };
 		65E1174D1D8A330D00448361 /* OthersProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65E1174C1D8A330D00448361 /* OthersProfile.storyboard */; };
 		65E1174F1D8A35BF00448361 /* Commend.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65E1174E1D8A35BF00448361 /* Commend.storyboard */; };
+		65E117511D8A3A2800448361 /* OthersProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E117501D8A3A2800448361 /* OthersProfileViewController.swift */; };
+		65E117531D8A3A4B00448361 /* OthersProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E117521D8A3A4B00448361 /* OthersProfileCollectionViewCell.swift */; };
+		65E117551D8A3ACC00448361 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E117541D8A3ACC00448361 /* HeaderCollectionReusableView.swift */; };
+		65E117571D8A97FE00448361 /* ProfileHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E117561D8A97FE00448361 /* ProfileHeaderCollectionReusableView.swift */; };
 		65ECA1901D82910B00178EB2 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ECA18F1D82910B00178EB2 /* StorageService.swift */; };
 		65ECA1921D829B8E00178EB2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ECA1911D829B8E00178EB2 /* HomeViewController.swift */; };
 		65ECA1941D829BA800178EB2 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ECA1931D829BA800178EB2 /* FeedTableViewCell.swift */; };
@@ -56,6 +60,10 @@
 		65DB66571D86C5E800F07759 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		65E1174C1D8A330D00448361 /* OthersProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OthersProfile.storyboard; sourceTree = "<group>"; };
 		65E1174E1D8A35BF00448361 /* Commend.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Commend.storyboard; sourceTree = "<group>"; };
+		65E117501D8A3A2800448361 /* OthersProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OthersProfileViewController.swift; sourceTree = "<group>"; };
+		65E117521D8A3A4B00448361 /* OthersProfileCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OthersProfileCollectionViewCell.swift; sourceTree = "<group>"; };
+		65E117541D8A3ACC00448361 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		65E117561D8A97FE00448361 /* ProfileHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		65ECA18F1D82910B00178EB2 /* StorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		65ECA1911D829B8E00178EB2 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		65ECA1931D829BA800178EB2 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
@@ -113,6 +121,9 @@
 				65ECA1951D82B54D00178EB2 /* Image.swift */,
 				65B6B6621D81133400B844BC /* Main.storyboard */,
 				65E1174C1D8A330D00448361 /* OthersProfile.storyboard */,
+				65E117501D8A3A2800448361 /* OthersProfileViewController.swift */,
+				65E117521D8A3A4B00448361 /* OthersProfileCollectionViewCell.swift */,
+				65E117541D8A3ACC00448361 /* HeaderCollectionReusableView.swift */,
 				65E1174E1D8A35BF00448361 /* Commend.storyboard */,
 				65B6B65E1D81133400B844BC /* AppDelegate.swift */,
 				65B6B6601D81133400B844BC /* SignUpViewController.swift */,
@@ -120,6 +131,7 @@
 				F123FE881D81654800689D3F /* WelcomeViewController.swift */,
 				6544066C1D825CF9006E636E /* PhotoViewController.swift */,
 				6544066E1D826D84006E636E /* ProfileViewController.swift */,
+				65E117561D8A97FE00448361 /* ProfileHeaderCollectionReusableView.swift */,
 				65ECA1911D829B8E00178EB2 /* HomeViewController.swift */,
 				657593721D87958A00221E6D /* Sections.xib */,
 				657593761D87963B00221E6D /* Sections.swift */,
@@ -291,7 +303,9 @@
 				F1AB921E1D82482B00578D03 /* Instalkgram-Bridging-Header.m in Sources */,
 				F123FE891D81654800689D3F /* WelcomeViewController.swift in Sources */,
 				657593771D87963B00221E6D /* Sections.swift in Sources */,
+				65E117571D8A97FE00448361 /* ProfileHeaderCollectionReusableView.swift in Sources */,
 				65B6B6611D81133400B844BC /* SignUpViewController.swift in Sources */,
+				65E117551D8A3ACC00448361 /* HeaderCollectionReusableView.swift in Sources */,
 				65B6B65F1D81133400B844BC /* AppDelegate.swift in Sources */,
 				F13B42A21D85B89C00340A81 /* RelationshipViewController.swift in Sources */,
 				65ECA1961D82B54D00178EB2 /* Image.swift in Sources */,
@@ -301,6 +315,8 @@
 				65DB66581D86C5E800F07759 /* ProfileCollectionViewCell.swift in Sources */,
 				F16B87301D866B5800749059 /* InstalkgramUser.swift in Sources */,
 				6544066F1D826D84006E636E /* ProfileViewController.swift in Sources */,
+				65E117511D8A3A2800448361 /* OthersProfileViewController.swift in Sources */,
+				65E117531D8A3A4B00448361 /* OthersProfileCollectionViewCell.swift in Sources */,
 				F123FE851D81511700689D3F /* User.swift in Sources */,
 				F123FE871D8161B000689D3F /* DataService.swift in Sources */,
 			);
