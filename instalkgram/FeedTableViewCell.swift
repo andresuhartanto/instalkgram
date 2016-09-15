@@ -42,8 +42,6 @@ class FeedTableViewCell: UITableViewCell {
         
         
         if liked{
-            
-
             delegate?.itemLikeIndex(indexPath)
             let image = UIImage(named: "love_filled")
             likeButtonImage.setImage(image, forState: .Normal)
@@ -51,6 +49,7 @@ class FeedTableViewCell: UITableViewCell {
             liked = false
             
         }else{
+            
             delegate?.itemDislikeIndex(indexPath)
             let image = UIImage(named: "love_empty")
             likeButtonImage.setImage(image, forState: .Normal)
