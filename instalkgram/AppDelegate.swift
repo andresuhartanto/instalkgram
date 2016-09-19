@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
@@ -17,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         FIRApp.configure()
+        
+        IQKeyboardManager.sharedManager().enable = true
+        FIRDatabase.database().persistenceEnabled = true
         
         //if let _ = NSUserDefaults.standardUserDefaults().objectForKey(User.sessionKey) as? String{
         if User.getSingleton.isUserLoggedIn() {

@@ -16,6 +16,8 @@ class Image {
     var imageID: String
     var numberOfLikes: Int
     var usersLikes: [String]
+    var filename: String
+    var userName: String?
     
     init(){
         downloadURL = ""
@@ -23,6 +25,7 @@ class Image {
         createdAt = 0.0
         imageID = ""
         numberOfLikes = 0
+        filename = ""
         usersLikes = []
     }
     
@@ -30,6 +33,8 @@ class Image {
         guard let dict = snapshot.value as? [String:AnyObject] else { return nil}
         
          imageID = snapshot.key
+        
+       
         
         if let dictURL = dict["downloadURL"] as? String {
             self.downloadURL = dictURL
@@ -46,6 +51,7 @@ class Image {
         
         if let userID = dict["userUID"] as? String{
             self.userUID = userID
+            
         }else {
             self.userUID = ""
         }
@@ -56,12 +62,18 @@ class Image {
             self.numberOfLikes = 0
         }
         
+        if let fname = dict["filename"] as? String{
+            self.filename  = fname
+        }else {
+            self.filename  = ""
+        }
+        
         if let usersLikes = dict["usersLikes"] as? [String]{
             self.usersLikes = usersLikes
         }else {
             self.usersLikes = []
         }
     }
-    
+
     
 }

@@ -9,11 +9,18 @@
 import UIKit
 import FirebaseDatabase
 
+@objc protocol TableViewCellDelegate {
+//    func itemLikeIndex(indexPath: NSIndexPath?)
+//    func itemDislikeIndex(indexPath: NSIndexPath?)
+    func commentTheImage(indexPath:NSIndexPath?)
+}
 
 class FeedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var imagePost: UIImageView!
     @IBOutlet weak var likesLabel: UILabel!
+    weak var delegate: TableViewCellDelegate?
+
      
     
     var imageObject: Image?
@@ -21,19 +28,6 @@ class FeedTableViewCell: UITableViewCell {
    // var liked:Bool = true
     
     @IBOutlet weak var likeButtonImage: UIButton!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
-    
-    
     
 
     @IBAction func onLikeButtonPressed(sender: UIButton) {
@@ -105,7 +99,7 @@ class FeedTableViewCell: UITableViewCell {
     
     
     @IBAction func onCommentButtonPressed(sender: UIButton) {
-        print("comment button pressed")
+        delegate?.commentTheImage(indexPath)
     }
     
 }
