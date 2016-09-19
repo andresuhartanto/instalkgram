@@ -12,32 +12,39 @@ import FirebaseStorage
 import FirebaseDatabase
 import SDWebImage
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, TableViewCellDelegate {
-
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
+    
     @IBOutlet weak var feedTableView: UITableView!
     var imagesForFeed = [Image]()
     var usernameForFeed = [InstallkgramUser]()
     var imageCache = SDImageCache(namespace: "nameSpaceImageCacheXPTO")
-
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DataService.userRef.child(User.currentUserUid).observeSingleEventOfType(.Value, withBlock: {(snapself) in
-            print("snapselfkey \(snapself.key)")
-            if let username = InstallkgramUser.init(snapshot: snapself){
-                self.usernameForFeed.append(username)
-                self.retrieveFeed(username)
-                
-                //to cater - user come here without login (did not sign out in previous session)
-                User.getSingleton.storeUserSession(username.username)
-                }
-            })
+        self.retrieveCurrentUser(User.currentUserUid)
         self.retrieveFollowedUsersImages()
     }
-
+    
+    
+    func retrieveCurrentUser(userID: String){
+        
+        DataService.userRef.child(userID).observeSingleEventOfType(.Value, withBlock: {(snapself) in
+            
+            print("snapselfkey \(snapself.key)")
+            
+            if let currentUser = InstallkgramUser.init(snapshot: snapself){
+                self.usernameForFeed.append(currentUser)
+                self.retrieveFeed(currentUser)
+                
+                //to cater - user come here without login (did not sign out in previous session)
+                User.getSingleton.storeUserSession(currentUser.username)
+            }
+        })
+    }
+    
     func retrieveFollowedUsersImages(){
+        
         DataService.userRef.child(User.currentUserUid).child("following").observeEventType(.ChildAdded, withBlock: {(snapshot) in
             print("snapshotkey \(snapshot.key)")
             
@@ -60,16 +67,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         DataService.userRef.child(username.userUID).child("images").observeEventType(.ChildAdded , withBlock: { (snap2) in
             
             print("snap2key \(snap2.key)")
-            DataService.rootRef.child("images").child(snap2.key).observeEventType(.Value , withBlock: { (snap) in
-                
-                print("imagekey \(snap.key)")
+            DataService.rootRef.child("images").child(snap2.key).observeSingleEventOfType(.Value , withBlock: { (snap) in
+                print("Retrieve feed : imagekey \(snap.key)")
                 if let image = Image.init(snapshot: snap){
                     username.images.append(image)
                     self.feedTableView.reloadData()
                 }
                 
             })
-            
             
         })
         /**end of andre*/
@@ -110,49 +115,63 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let oneImage = userInfo.images[indexPath.row]
         //let oneImage = imagesForFeed[indexPath.row]
         cell?.imagePost.sd_setImageWithURL(NSURL(string: oneImage.downloadURL))
-        
-
-        cell?.delegate = self
+        cell?.imageObject = oneImage
+        cell?.likesLabel.text = String(oneImage.numberOfLikes) + " Likes"
         cell?.indexPath = indexPath
+        
+        
+        FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("numberOfLikes").observeEventType(.Value, withBlock : { (snapshot) in
+            if let numberOfLIkes = snapshot.value as? Int {
+                cell?.likesLabel.text = String(numberOfLIkes) + " Likes"
+            }
+        })
+        
+        
+        
 
         return cell!
     }
+//    
+//    func numberOfLikesChanged(indexPath: NSIndexPath?) {
+//        guard let theIndexPath = indexPath else { return }
+//        feedTableView.reloadRowsAtIndexPaths([indexPath, withRowAnimation: .None)
+//    }
     
-    func itemLikeIndex(indexPath: NSIndexPath?) {
-        //guard let imageIndexPath = indexPath else { return }
-        let userInfo = usernameForFeed[indexPath!.section]
-        let oneImage = userInfo.images[indexPath!.row]
-        
-        // Edit the image node
-        //var userLikes = oneImage.usersLikes
-        
-        // check if user never like image
-        FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("userLikes").child(User.currentUserUid).observeSingleEventOfType(.Value, withBlock: {snapshot in
-            // snapshot.value is "true" if user has liked this image before
-            if snapshot.value is NSNull {
-                FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("numberOfLikes").setValue(oneImage.numberOfLikes+1)
-                FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("userLikes").updateChildValues([User.currentUserUid : true])
-                DataService.userRef.child(User.currentUserUid).child("imagesLikes").updateChildValues([oneImage.imageID:true])
-            } else {
-                
-            }
-        })
-    }
+//    func itemLikeIndex(indexPath: NSIndexPath?) {
+//        //guard let imageIndexPath = indexPath else { return }
+//        let userInfo = usernameForFeed[indexPath!.section]
+//        let oneImage = userInfo.images[indexPath!.row]
+//        
+//        // Edit the image node
+//        //var userLikes = oneImage.usersLikes
+//        
+//        // check if user never like image
+//        FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("userLikes").child(User.currentUserUid).observeSingleEventOfType(.Value, withBlock: {snapshot in
+//            // snapshot.value is "true" if user has liked this image before
+//            if snapshot.value is NSNull {
+//                FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("numberOfLikes").setValue(oneImage.numberOfLikes+1)
+//                FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("userLikes").updateChildValues([User.currentUserUid : true])
+//                DataService.userRef.child(User.currentUserUid).child("imagesLikes").updateChildValues([oneImage.imageID:true])
+//                //} else {
+//                
+//            }
+//        })
+//    }
+//    
+//    func itemDislikeIndex(indexPath: NSIndexPath?) {
+//        //guard let imageIndexPath = indexPath else { return }
+//        let userInfo = usernameForFeed[indexPath!.section]
+//        let oneImage = userInfo.images[indexPath!.row]
+//        //var userLikes = oneImage.usersLikes
+//        
+//        // check if user has like image before
+//        FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("numberOfLikes").setValue(oneImage.numberOfLikes-1)
+//        FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("userLikes").child(User.currentUserUid).removeValue()
+//        
+//        
+//        
+//        DataService.userRef.child(User.currentUserUid).child("imagesLikes").child(oneImage.imageID).removeValue()
+//        
+//    }
     
-    func itemDislikeIndex(indexPath: NSIndexPath?) {
-        //guard let imageIndexPath = indexPath else { return }
-        let userInfo = usernameForFeed[indexPath!.section]
-        let oneImage = userInfo.images[indexPath!.row]
-        //var userLikes = oneImage.usersLikes
-        
-        // check if user has like image before
-        FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("numberOfLikes").setValue(oneImage.numberOfLikes-0)
-        FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("userLikes").child(User.currentUserUid).removeValue()
-
-
-        
-         DataService.userRef.child(User.currentUserUid).child("imagesLikes").child(oneImage.imageID).removeValue()
-        
-    }
-
 }
