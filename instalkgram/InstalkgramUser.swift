@@ -37,7 +37,9 @@ public class InstallkgramUser{
         
         userUID = snapshot.key
         
-        //print("dictionary \(dict)")
+
+        print("Init User with dictionary \(dict)")
+
         if let dictUsername = dict["username"] as? String {
             self.username = dictUsername
         } else {

@@ -65,7 +65,9 @@ class PhotoViewController: UIViewController, FusumaDelegate {
                     let filename = imagePath
                     let fullurl = metadata!.downloadURL()!.absoluteString
                     print("fulurl \(metadata!.downloadURL()!.absoluteString)")
-                    let imageDict = ["downloadURL":fullurl,"created_at":NSDate().timeIntervalSince1970,"userUID":User.currentUserUid, "filename":filename]
+
+                    let imageDict = ["downloadURL":fullurl,"created_at":NSDate().timeIntervalSince1970,"userUID":User.currentUserUid,"numberOfLikes":0,"userLikes":[], "filename":filename]
+
                     //build a new root node called tweets
                     let imageRef = DataService.rootRef.child("images").childByAutoId()
                     //underneath the root, there is text,created_at,userUID
