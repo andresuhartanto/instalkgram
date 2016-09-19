@@ -37,7 +37,7 @@ public class InstallkgramUser{
         
         userUID = snapshot.key
         
-        print("dictionary \(dict)")
+        //print("dictionary \(dict)")
         if let dictUsername = dict["username"] as? String {
             self.username = dictUsername
         } else {
@@ -73,6 +73,7 @@ public class InstallkgramUser{
 //        }else {
 //            self.photoURL = ""
 //        }
+        
         
         //self.retrieveRelation()
         //print("step1.1 \(self.userUID)...\(self.username)")

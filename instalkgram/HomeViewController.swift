@@ -13,12 +13,12 @@ import FirebaseDatabase
 import SDWebImage
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, TableViewCellDelegate, userTapedDelegate {
-
+    
     @IBOutlet weak var feedTableView: UITableView!
     var imagesForFeed = [Image]()
     var usernameForFeed = [InstallkgramUser]()
     var imageCache = SDImageCache(namespace: "nameSpaceImageCacheXPTO")
-
+    var selectedImage : Image?
     
     
     override func viewDidLoad() {
@@ -26,7 +26,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         
         DataService.userRef.child(User.currentUserUid).observeSingleEventOfType(.Value, withBlock: {(snapself) in
-            print("snapselfkey \(snapself.key)")
+            //print("snapselfkey \(snapself.key)")
             if let username = InstallkgramUser.init(snapshot: snapself){
                 
                 self.usernameForFeed.append(username)
@@ -34,18 +34,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
                 //to cater - user come here without login (did not sign out in previous session)
                 User.getSingleton.storeUserSession(username.username)
-                }
-            })
+            }
+        })
         self.retrieveFollowedUsersImages()
     }
-
+    
     func retrieveFollowedUsersImages(){
         DataService.userRef.child(User.currentUserUid).child("following").observeEventType(.ChildAdded, withBlock: {(snapshot) in
-            print("snapshotkey \(snapshot.key)")
+            //print("snapshotkey \(snapshot.key)")
             
             DataService.userRef.child(snapshot.key).observeSingleEventOfType(.Value, withBlock: {(snap1) in
                 
-                print("snap1key \(snap1.key)")
+                //print("snap1key \(snap1.key)")
                 
                 if let username = InstallkgramUser.init(snapshot: snap1){
                     self.usernameForFeed.append(username)
@@ -62,14 +62,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         /**andre**/
         DataService.userRef.child(username.userUID).child("images").observeEventType(.ChildAdded , withBlock: { (snap2) in
             
-//            if let imagePost = Image.init(snapshot: snap2){
-//                self.imagesForFeed.append(imagePost)
-//            }
-            
-            print("snap2key \(snap2.key)")
             DataService.rootRef.child("images").child(snap2.key).observeEventType(.Value , withBlock: { (snap) in
                 
-                print("imagekey \(snap.key)")
+                //print("imagekey \(snap.key)")
                 if let image = Image.init(snapshot: snap){
                     print("username.username \(username.username)")
                     image.userName = username.username
@@ -86,7 +81,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
-        
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return imagesForFeed.count
     }
@@ -109,11 +104,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         performSegueWithIdentifier("UserSegue", sender: Sender)
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destinantion = segue.destinationViewController as! OthersProfileViewController
-        let sections = sender as! Sections
-        destinantion.userID = sections.userUID!
-        destinantion.username = sections.username!
-        print(sections.username)
+        
+        if segue.identifier=="CommentSegue" {
+            let commentVC = segue.destinationViewController as! CommentViewController
+            commentVC.selectedImage = selectedImage
+        }
+            
+        else {
+            let destinantion = segue.destinationViewController as! OthersProfileViewController
+            let sections = sender as! Sections
+            destinantion.userID = sections.userUID!
+            destinantion.username = sections.username!
+            print(sections.username)
+        }
     }
     
     
@@ -123,8 +126,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
-//        let userInfo = usernameForFeed[section]
-//        return userInfo.images.count
+        //        let userInfo = usernameForFeed[section]
+        //        return userInfo.images.count
     }
     
     func documentPahth() -> String {
@@ -134,14 +137,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("FeedCell") as? FeedTableViewCell
-//        let userInfo = usernameForFeed[indexPath.section]
+        //        let userInfo = usernameForFeed[indexPath.section]
         let oneImage = imagesForFeed[indexPath.section]
         //let oneImage = imagesForFeed[indexPath.row]
         cell?.imagePost.sd_setImageWithURL(NSURL(string: oneImage.downloadURL))
-
+        
         cell?.delegate = self
         cell?.indexPath = indexPath
-
+        
         return cell!
     }
     
@@ -175,11 +178,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // check if user has like image before
         FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("numberOfLikes").setValue(oneImage.numberOfLikes-0)
         FIRDatabase.database().reference().child("images").child(oneImage.imageID).child("userLikes").child(User.currentUserUid).removeValue()
-
-
         
-         DataService.userRef.child(User.currentUserUid).child("imagesLikes").child(oneImage.imageID).removeValue()
+        
+        
+        DataService.userRef.child(User.currentUserUid).child("imagesLikes").child(oneImage.imageID).removeValue()
         
     }
-
+    
+    func commentTheImage(indexPath:NSIndexPath?) {
+        let userInfo = usernameForFeed[indexPath!.section]
+        selectedImage = userInfo.images[indexPath!.row]
+    }
+    
+        
+    
 }
