@@ -13,4 +13,5 @@ target 'instalkgram' do
     pod 'Fusuma'
     pod 'Firebase/Storage'
     pod 'SDWebImage', '~>3.8’
+    pod 'IQKeyboardManagerSwift'
 end	

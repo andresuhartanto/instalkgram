@@ -27,9 +27,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         DataService.userRef.child(User.currentUserUid).child("images").observeEventType(.ChildAdded , withBlock: { (snapshot) in
             
-            print("key \(snapshot.key)")
+            //print("key \(snapshot.key)")
             DataService.rootRef.child("images").child(snapshot.key).observeEventType(.Value , withBlock: { (snap) in
-                print("imagekey \(snap.key)")
+                //print("imagekey \(snap.key)")
                 if let image = Image.init(snapshot: snap){
                     self.imageForPost.append(image)
                     self.collectionView.reloadData()
@@ -125,15 +125,15 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     func deleteImageFromStorage(imgDeleted: Image) {
         
-        print("filename \(imgDeleted.filename)")
+        //print("filename \(imgDeleted.filename)")
         let imagesStorageRef = StorageService.storageRef.child("images/"+imgDeleted.filename)
 
         imagesStorageRef.deleteWithCompletion { (error) in
             if let error = error {
-                print("Error deleting: \(error)")
+                //print("Error deleting: \(error)")
                 return
             } else {
-                print("File deleted \(imgDeleted.filename)")
+                //print("File deleted \(imgDeleted.filename)")
             }
         }
     }

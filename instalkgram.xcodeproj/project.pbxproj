@@ -26,6 +26,9 @@
 		65ECA1921D829B8E00178EB2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ECA1911D829B8E00178EB2 /* HomeViewController.swift */; };
 		65ECA1941D829BA800178EB2 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ECA1931D829BA800178EB2 /* FeedTableViewCell.swift */; };
 		65ECA1961D82B54D00178EB2 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ECA1951D82B54D00178EB2 /* Image.swift */; };
+		F12305471D8A37F500BB61E7 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12305461D8A37F500BB61E7 /* CommentViewController.swift */; };
+		F12305491D8A394F00BB61E7 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12305481D8A394F00BB61E7 /* CommentTableViewCell.swift */; };
+		F123054B1D8A3D3100BB61E7 /* UserComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F123054A1D8A3D3100BB61E7 /* UserComment.swift */; };
 		F123FE851D81511700689D3F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F123FE841D81511700689D3F /* User.swift */; };
 		F123FE871D8161B000689D3F /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F123FE861D8161B000689D3F /* DataService.swift */; };
 		F123FE891D81654800689D3F /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F123FE881D81654800689D3F /* WelcomeViewController.swift */; };
@@ -61,6 +64,9 @@
 		65ECA1931D829BA800178EB2 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		65ECA1951D82B54D00178EB2 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		AD0CBDE294D58A0A0D0318C3 /* Pods-instalkgram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instalkgram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-instalkgram/Pods-instalkgram.debug.xcconfig"; sourceTree = "<group>"; };
+		F12305461D8A37F500BB61E7 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		F12305481D8A394F00BB61E7 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		F123054A1D8A3D3100BB61E7 /* UserComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserComment.swift; sourceTree = "<group>"; };
 		F123FE841D81511700689D3F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F123FE861D8161B000689D3F /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		F123FE881D81654800689D3F /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -111,9 +117,12 @@
 				F16B872F1D866B5800749059 /* InstalkgramUser.swift */,
 				F123FE841D81511700689D3F /* User.swift */,
 				65ECA1951D82B54D00178EB2 /* Image.swift */,
+				F123054A1D8A3D3100BB61E7 /* UserComment.swift */,
 				65B6B6621D81133400B844BC /* Main.storyboard */,
 				65E1174C1D8A330D00448361 /* OthersProfile.storyboard */,
 				65E1174E1D8A35BF00448361 /* Commend.storyboard */,
+				F12305461D8A37F500BB61E7 /* CommentViewController.swift */,
+				F12305481D8A394F00BB61E7 /* CommentTableViewCell.swift */,
 				65B6B65E1D81133400B844BC /* AppDelegate.swift */,
 				65B6B6601D81133400B844BC /* SignUpViewController.swift */,
 				F123FE8A1D816CC300689D3F /* LoginViewController.swift */,
@@ -292,10 +301,12 @@
 				F123FE891D81654800689D3F /* WelcomeViewController.swift in Sources */,
 				657593771D87963B00221E6D /* Sections.swift in Sources */,
 				65B6B6611D81133400B844BC /* SignUpViewController.swift in Sources */,
+				F12305491D8A394F00BB61E7 /* CommentTableViewCell.swift in Sources */,
 				65B6B65F1D81133400B844BC /* AppDelegate.swift in Sources */,
 				F13B42A21D85B89C00340A81 /* RelationshipViewController.swift in Sources */,
 				65ECA1961D82B54D00178EB2 /* Image.swift in Sources */,
 				65ECA1901D82910B00178EB2 /* StorageService.swift in Sources */,
+				F123054B1D8A3D3100BB61E7 /* UserComment.swift in Sources */,
 				6544066D1D825CF9006E636E /* PhotoViewController.swift in Sources */,
 				65ECA1921D829B8E00178EB2 /* HomeViewController.swift in Sources */,
 				65DB66581D86C5E800F07759 /* ProfileCollectionViewCell.swift in Sources */,
@@ -303,6 +314,7 @@
 				6544066F1D826D84006E636E /* ProfileViewController.swift in Sources */,
 				F123FE851D81511700689D3F /* User.swift in Sources */,
 				F123FE871D8161B000689D3F /* DataService.swift in Sources */,
+				F12305471D8A37F500BB61E7 /* CommentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

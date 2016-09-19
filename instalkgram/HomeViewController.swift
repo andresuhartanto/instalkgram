@@ -18,14 +18,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var imagesForFeed = [Image]()
     var usernameForFeed = [InstallkgramUser]()
     var imageCache = SDImageCache(namespace: "nameSpaceImageCacheXPTO")
-
+    var selectedImage : Image?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         DataService.userRef.child(User.currentUserUid).observeSingleEventOfType(.Value, withBlock: {(snapself) in
-            print("snapselfkey \(snapself.key)")
+            //print("snapselfkey \(snapself.key)")
             if let username = InstallkgramUser.init(snapshot: snapself){
                 self.usernameForFeed.append(username)
                 self.retrieveFeed(username)
@@ -39,11 +39,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     func retrieveFollowedUsersImages(){
         DataService.userRef.child(User.currentUserUid).child("following").observeEventType(.ChildAdded, withBlock: {(snapshot) in
-            print("snapshotkey \(snapshot.key)")
+            //print("snapshotkey \(snapshot.key)")
             
             DataService.userRef.child(snapshot.key).observeSingleEventOfType(.Value, withBlock: {(snap1) in
                 
-                print("snap1key \(snap1.key)")
+                //print("snap1key \(snap1.key)")
                 
                 if let username = InstallkgramUser.init(snapshot: snap1){
                     self.usernameForFeed.append(username)
@@ -60,10 +60,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         /**andre**/
         DataService.userRef.child(username.userUID).child("images").observeEventType(.ChildAdded , withBlock: { (snap2) in
             
-            print("snap2key \(snap2.key)")
+            //print("snap2key \(snap2.key)")
             DataService.rootRef.child("images").child(snap2.key).observeEventType(.Value , withBlock: { (snap) in
                 
-                print("imagekey \(snap.key)")
+                //print("imagekey \(snap.key)")
                 if let image = Image.init(snapshot: snap){
                     username.images.append(image)
                     self.feedTableView.reloadData()
@@ -154,6 +154,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
          DataService.userRef.child(User.currentUserUid).child("imagesLikes").child(oneImage.imageID).removeValue()
         
+    }
+    
+    func commentTheImage(indexPath:NSIndexPath?) {
+        let userInfo = usernameForFeed[indexPath!.section]
+        selectedImage = userInfo.images[indexPath!.row]
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier=="CommentSegue" {
+            let commentVC = segue.destinationViewController as! CommentViewController
+            commentVC.selectedImage = selectedImage
+        }
     }
 
 }
