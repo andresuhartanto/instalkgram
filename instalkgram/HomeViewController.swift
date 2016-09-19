@@ -29,23 +29,26 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         self.retrieveCurrentUser(User.currentUserUid)
         self.retrieveFollowedUsersImages()
+        
+
+
     }
     
     
     func retrieveCurrentUser(userID: String){
         
-        DataService.userRef.child(userID).observeSingleEventOfType(.Value, withBlock: {(snapself) in
-            
-            print("snapselfkey \(snapself.key)")
-            
-            if let currentUser = InstallkgramUser.init(snapshot: snapself){
-                self.usernameForFeed.append(currentUser)
-                self.retrieveFeed(currentUser)
-                
-                //to cater - user come here without login (did not sign out in previous session)
-                User.getSingleton.storeUserSession(currentUser.username)
-            }
-        })
+//        DataService.userRef.child(userID).observeSingleEventOfType(.Value, withBlock: {(snapself) in
+//            
+//            print("snapselfkey \(snapself.key)")
+//            
+//            if let currentUser = InstallkgramUser.init(snapshot: snapself){
+//                self.usernameForFeed.append(currentUser)
+//                self.retrieveFeed(currentUser)
+//                
+//                //to cater - user come here without login (did not sign out in previous session)
+//                User.getSingleton.storeUserSession(currentUser.username)
+//            }
+//        })
 
         
         DataService.userRef.child(User.currentUserUid).observeSingleEventOfType(.Value, withBlock: {(snapself) in
@@ -78,6 +81,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
             })
         })
+        
+        
     }
     
     
@@ -87,12 +92,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         DataService.userRef.child(username.userUID).child("images").observeEventType(.ChildAdded , withBlock: { (snap2) in
             
 
-            DataService.rootRef.child("images").child(snap2.key).observeEventType(.Value , withBlock: { (snap) in
+            DataService.rootRef.child("images").child(snap2.key).observeSingleEventOfType(.Value , withBlock: { (snap) in
                 
                 //print("imagekey \(snap.key)")
                 if let image = Image.init(snapshot: snap){
                     print("username.username \(username.username)")
                     image.userName = username.username
+                    //image.numberOfLikes=
                     username.images.append(image)
                     self.imagesForFeed.append(image)
                     self.feedTableView.reloadData()
