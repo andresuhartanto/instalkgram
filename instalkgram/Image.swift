@@ -17,6 +17,7 @@ class Image {
     var numberOfLikes: Int
     var usersLikes: [String]
     var filename: String
+    var userName: String?
     
     init(){
         downloadURL = ""
@@ -33,6 +34,8 @@ class Image {
         
          imageID = snapshot.key
         
+       
+        
         if let dictURL = dict["downloadURL"] as? String {
             self.downloadURL = dictURL
         } else {
@@ -48,6 +51,7 @@ class Image {
         
         if let userID = dict["userUID"] as? String{
             self.userUID = userID
+            
         }else {
             self.userUID = ""
         }
@@ -70,6 +74,6 @@ class Image {
             self.usersLikes = []
         }
     }
-    
+
     
 }

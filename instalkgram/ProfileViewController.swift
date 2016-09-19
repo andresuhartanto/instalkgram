@@ -8,20 +8,29 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseStorage
+import SDWebImage
 
-class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, profileTapedDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var profilePicture: UIImageView!
-    @IBOutlet weak var numberOfPost: UILabel!
-    @IBOutlet weak var numberOfFollowers: UILabel!
-    @IBOutlet weak var numberOfFollowing: UILabel!
+    
     
     var imageForPost = [Image]()
-
+    var profilePhotoURL : String?
+    let imagePicker = UIImagePickerController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.profilePicture.layer.cornerRadius = 25
+        imagePicker.delegate = self
+        //
+        //        let tap = UITapGestureRecognizer(target: self, action: #selector(self.profileImageTapped))
+        //        tap.delegate = self
+        //        profilePicture.addGestureRecognizer(tap)
+        //        profilePicture.userInteractionEnabled = true
+        
+        
+        //        self.profilePicture.layer.cornerRadius = 25
         self.navigationItem.title = User.currentUserName
         self.collectionView.backgroundColor = UIColor.whiteColor()
         
@@ -34,17 +43,40 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
                     self.imageForPost.append(image)
                     self.collectionView.reloadData()
                 }
-            
+                
             })
-        
+            
         })
+        
+        //.child("profile_photo").child("downloadURL")
+        DataService.userRef.child(User.currentUserUid).child("profile_photo").observeEventType(.ChildAdded, withBlock: { (snapshot) in
+            print("photo \(snapshot.key)")
+        
+           
+            if let photoURL = snapshot.value as? String {
+                self.profilePhotoURL = photoURL
+            }else {
+                self.profilePhotoURL = ""
+            }
+//            let range = NSRange(location: 0, length: 1)
+//            collectionView.reloadSections(NSIndexSet(indexesInRange: range
+            let headerIndexPath = NSIndexPath(forItem: 0, inSection: 0)
+            let header = self.collectionView.supplementaryViewForElementKind(UICollectionElementKindSectionHeader, atIndexPath: headerIndexPath)
+//            header.setNeedsLayout()
+            header.setNeedsDisplay()
+            
+            self.collectionView.reloadData()
+      
+            
+        })
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     @IBAction func logoutButoon(sender: UIBarButtonItem) {
         
         try! FIRAuth.auth()!.signOut()
@@ -97,6 +129,21 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         return 0
     }
     
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderView", forIndexPath: indexPath) as! ProfileHeaderCollectionReusableView
+        header.delegate = self
+        header.setupTapGesture()
+        
+        if let photo = self.profilePhotoURL as String? {
+            header.profileImageView.sd_setImageWithURL(NSURL(string:  photo))
+        } else {
+            header.profileImageView.image = UIImage(contentsOfFile: "background2")
+        }
+        
+        return header
+    }
+    
+    
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this image?", preferredStyle: .Alert)
         let okaAction = UIAlertAction(title: "Yes", style: .Default) { (okayAction) in
@@ -110,7 +157,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
                 if (imgDeleted.filename != "") {
                     self.deleteImageFromStorage(imgDeleted)
                 }
-            
+                
                 self.imageForPost.removeAtIndex(indexPath.row)
                 self.collectionView.reloadData()
             }
@@ -127,7 +174,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         //print("filename \(imgDeleted.filename)")
         let imagesStorageRef = StorageService.storageRef.child("images/"+imgDeleted.filename)
-
+        
         imagesStorageRef.deleteWithCompletion { (error) in
             if let error = error {
                 //print("Error deleting: \(error)")
@@ -137,5 +184,72 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             }
         }
     }
-
+    
+    
+    func profileImageTapped(){
+        //        imagePicker.allowsEditing = false
+        //        imagePicker.sourceType = .PhotoLibrary
+        //
+        //        presentViewController(imagePicker, animated: true, completion: nil)
+        //        print("image tapped")
+    }
+    
+    
+    
+    func handleProfileTapped() {
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .PhotoLibrary
+        
+        presentViewController(imagePicker, animated: true, completion: nil)
+        print("tapped dsdfa")
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
+            uploadProfilePicture(pickedImage)
+            
+        }
+        
+        dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    func uploadProfilePicture(pickedImage:UIImage){
+        
+        //store to Firebase Storage
+        let imagesStorageRef = StorageService.storageRef.child("images")
+        let imageData = UIImageJPEGRepresentation(pickedImage, 0.8)
+        let imagePath = FIRAuth.auth()!.currentUser!.uid + ".jpg"
+        let metadata = FIRStorageMetadata()
+        metadata.contentType = "image/jpeg"
+        imagesStorageRef.child(imagePath)
+            .putData(imageData!, metadata: metadata) { (metadata, error) in
+                if let error = error {
+                    print("Error uploading: \(error)")
+                    return
+                }
+                /**save image to firebase database*/
+                let fullurl = metadata!.downloadURL()!.absoluteString
+                print("fulurl \(metadata!.downloadURL()!.absoluteString)")
+                
+                let imageDict = ["profile_photo_url":fullurl]
+                //build a new root node called tweets
+                let imageRef = DataService.userRef.child(User.currentUserUid).child("profile_photo")
+                //underneath the root, there is text,created_at,userUID
+                imageRef.setValue(imageDict)
+                
+                // Caching the image
+                SDImageCache.sharedImageCache().storeImage(pickedImage, forKey: fullurl)
+                
+                /**/
+        }
+        
+    }
+    
 }
