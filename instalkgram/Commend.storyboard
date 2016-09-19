@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MCq-Ak-tZ6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MCq-Ak-tZ6">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="99" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fEs-u1-5SK">
-                                <rect key="frame" x="0.0" y="20" width="600" height="480"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="530"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CommentCell" rowHeight="120" id="dhc-A8-rz2" customClass="CommentTableViewCell" customModule="instalkgram" customModuleProvider="target">
@@ -44,12 +44,26 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="U3o-qJ-Inq" userLabel="RightStack View">
                                                                     <rect key="frame" x="42" y="0.0" width="509" height="109"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5B-IB-D9a">
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="6pp-G4-8v4">
                                                                             <rect key="frame" x="0.0" y="0.0" width="509" height="21"/>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
+                                                                            <subviews>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5B-IB-D9a">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="21"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="80" id="x3G-rI-uFU"/>
+                                                                                    </constraints>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6gp-cY-D4A" userLabel="dateLabel">
+                                                                                    <rect key="frame" x="82" y="0.0" width="427" height="21"/>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                            </subviews>
+                                                                        </stackView>
                                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Comment..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sL9-lY-MxS">
                                                                             <rect key="frame" x="0.0" y="27" width="509" height="82"/>
                                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -72,6 +86,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="commentTxtView" destination="sL9-lY-MxS" id="VdO-48-9eq"/>
+                                            <outlet property="dateLbl" destination="6gp-cY-D4A" id="GtV-sv-foV"/>
                                             <outlet property="userPhoto" destination="5yJ-E1-hgn" id="S0r-zT-5LQ"/>
                                             <outlet property="usernameLbl" destination="Z5B-IB-D9a" id="4hl-fi-brr"/>
                                         </connections>
@@ -79,10 +94,10 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JZI-lA-v2Q">
-                                <rect key="frame" x="20" y="500" width="560" height="50"/>
+                                <rect key="frame" x="20" y="550" width="560" height="50"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add a comment..." textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ktO-Ov-sez">
-                                        <rect key="frame" x="0.0" y="10" width="302" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add a comment..." textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ktO-Ov-sez">
+                                        <rect key="frame" x="0.0" y="17" width="302" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="302" id="Y51-xA-qtm"/>
                                         </constraints>
@@ -90,7 +105,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UiI-lz-Nhe">
-                                        <rect key="frame" x="308" y="10" width="86" height="32"/>
+                                        <rect key="frame" x="308" y="17" width="86" height="32"/>
                                         <state key="normal" title="Button" image="send"/>
                                         <connections>
                                             <action selector="sendBtnPressed:" destination="MCq-Ak-tZ6" eventType="touchUpInside" id="ZN6-EM-bun"/>
@@ -109,7 +124,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="diw-ct-LcF" firstAttribute="top" secondItem="fEs-u1-5SK" secondAttribute="bottom" constant="100" id="0xa-Xk-ewJ"/>
+                            <constraint firstItem="diw-ct-LcF" firstAttribute="top" secondItem="fEs-u1-5SK" secondAttribute="bottom" constant="50" id="0xa-Xk-ewJ"/>
                             <constraint firstAttribute="trailing" secondItem="fEs-u1-5SK" secondAttribute="trailing" id="7mJ-2n-LAe"/>
                             <constraint firstItem="fEs-u1-5SK" firstAttribute="top" secondItem="3Bw-iv-qM2" secondAttribute="bottom" id="F8l-eJ-Php"/>
                             <constraint firstItem="fEs-u1-5SK" firstAttribute="leading" secondItem="6co-fn-bx6" secondAttribute="leading" id="Qz3-jw-uTJ"/>

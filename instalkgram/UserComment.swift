@@ -81,7 +81,7 @@ class UserComment {
         let x = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
         
         let duration = currentDate.timeIntervalSince1970 - tweetDate.timeIntervalSince1970
-        //print("diff \(duration/60)..\(currentDate.timeIntervalSince1970)")
+        print("diff \(duration/60)..\(currentDate.timeIntervalSince1970)..\(tweetDate.timeIntervalSince1970)")
         
 //        let today = x!.isDateInToday(tweetDate)
 //        
@@ -106,7 +106,15 @@ class UserComment {
                 if (d>=60) && (d<120) {
                     return "\(d) hour ago"
                 } else {
-                    return "\(d) hours ago"
+                    if (d<1440) {
+                        return "\(d) hours ago"
+                    } else {
+                        if (d >= 1440) && (d<2880) {
+                            return "\(d) day ago"
+                        } else {
+                            return "\(d) days ago"
+                        }
+                    }
                 }
             }
         }
