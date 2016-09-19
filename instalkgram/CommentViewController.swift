@@ -83,9 +83,24 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITextFiel
         let oneComment = self.listOfComments[indexPath.row]
         
         cell?.commentTxtView.text = oneComment.text
-        cell?.usernameLbl.text = "By " + oneComment.user.username + " at " + oneComment.displayDateTime()
-        //cell?.userPhoto.image.sd_setImageWithURL(NSURL(string: oneComment.user.photo))
+        cell?.usernameLbl.font = UIFont.boldSystemFontOfSize(15.0)
+        cell?.usernameLbl.attributedText = NSAttributedString(string:oneComment.user.username)
         
+        cell?.dateLbl.textColor = UIColor.grayColor()
+        cell?.dateLbl.font.fontWithSize(10.0)
+        cell?.dateLbl.attributedText = NSAttributedString(string:oneComment.displayDateTime())
+        
+        
+        if let pho = oneComment.user.photoURL as String? {
+            if pho != "" {
+                cell?.userPhoto.sd_setImageWithURL(NSURL(string: pho))
+            } else {
+                cell?.userPhoto.image = UIImage(named: "avatar-2")
+            }
+        } else {
+            cell?.userPhoto.image = UIImage(named: "avatar-2")
+        }
+
         return cell!
         
     }

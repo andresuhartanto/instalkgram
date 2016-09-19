@@ -11,6 +11,7 @@ import UIKit
 class CommentTableViewCell: UITableViewCell {
 
    
+    @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var commentTxtView: UITextView!
     @IBOutlet weak var usernameLbl: UILabel!
     @IBOutlet weak var userPhoto: UIImageView!

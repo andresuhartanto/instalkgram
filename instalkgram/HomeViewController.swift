@@ -262,8 +262,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //    }
 
     func commentTheImage(indexPath:NSIndexPath?) {
-        let userInfo = usernameForFeed[indexPath!.section]
-        selectedImage = userInfo.images[indexPath!.row]
+        //let userInfo = usernameForFeed[indexPath!.section]
+        //selectedImage = userInfo.images[indexPath!.row]
+        selectedImage = imagesForFeed[indexPath!.section]
     }
     
 
