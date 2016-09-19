@@ -30,7 +30,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         DataService.userRef.child(User.currentUserUid).child("images").observeEventType(.ChildAdded , withBlock: { (snapshot) in
             
             //print("key \(snapshot.key)")
-            DataService.rootRef.child("images").child(snapshot.key).observeEventType(.Value , withBlock: { (snap) in
+            DataService.rootRef.child("images").child(snapshot.key).observeSingleEventOfType(.Value , withBlock: { (snap) in
                 //print("imagekey \(snap.key)")
                 if let image = Image.init(snapshot: snap){
                     self.imageForPost.append(image)
