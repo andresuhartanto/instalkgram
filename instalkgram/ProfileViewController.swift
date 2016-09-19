@@ -23,14 +23,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         super.viewDidLoad()
         
         imagePicker.delegate = self
-        //
-        //        let tap = UITapGestureRecognizer(target: self, action: #selector(self.profileImageTapped))
-        //        tap.delegate = self
-        //        profilePicture.addGestureRecognizer(tap)
-        //        profilePicture.userInteractionEnabled = true
-        
-        
-        //        self.profilePicture.layer.cornerRadius = 25
+
         self.navigationItem.title = User.currentUserName
         self.collectionView.backgroundColor = UIColor.whiteColor()
         
@@ -133,6 +126,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderView", forIndexPath: indexPath) as! ProfileHeaderCollectionReusableView
         header.delegate = self
         header.setupTapGesture()
+        header.profileImageView.layer.cornerRadius = header.profileImageView.frame.height/2
+        header.profileImageView.layer.borderWidth = 2
+        header.profileImageView.clipsToBounds = true
         
         if let photo = self.profilePhotoURL as String? {
             header.profileImageView.sd_setImageWithURL(NSURL(string:  photo))
